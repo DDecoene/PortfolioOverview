@@ -1,0 +1,20 @@
+<h1>Asset List</h1>
+<hr />
+<div *ngFor="let asset of portfolio">
+  <H3>Name: {{ asset.name }}</H3>
+  <hr />
+  <ul>
+    <li>Market: {{ asset.market }}</li>
+    <li>Qty Held: {{ asset.quantityHeld }}</li>
+    <li>Current Price: {{ asset.currentPrice }}</li>
+    <li>
+      Total Value:
+      <app-asset-totalizer
+        [asset]="asset"
+        (assetValueEvent)="updateTotal($event)"
+      ></app-asset-totalizer>
+    </li>
+  </ul>
+</div>
+<hr />
+<h2>Grand Total: {{ total }}</h2>
