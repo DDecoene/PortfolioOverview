@@ -2,19 +2,18 @@
 <hr />
 <div *ngFor="let asset of portfolio">
   <H3>Name: {{ asset.name }}</H3>
-  <hr />
   <ul>
     <li>Market: {{ asset.market }}</li>
     <li>Qty Held: {{ asset.quantityHeld }}</li>
-    <li>Current Price: {{ asset.currentPrice }}</li>
+    <li>Current Price: <app-asset-price [asset]="asset"></app-asset-price></li>
     <li>
-      Total Value:
+      Total Value:<b>
       <app-asset-totalizer
         [asset]="asset"
         (assetValueEvent)="updateTotal($event)"
-      ></app-asset-totalizer>
+      ></app-asset-totalizer></b>
     </li>
   </ul>
 </div>
 <hr />
-<h2>Grand Total: {{ total }}</h2>
+<h2>Grand Total: {{ total| currency:'EUR' }}</h2>

@@ -8,7 +8,7 @@ export const portfolio: Array<Asset> = [
     market: 'Binance',
     quantityHeld: 0.3,
     currentPrice: 1500,
-    priceApiURL: '',
+    priceApiURL: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur',
     totalValue: 0,
   },
   {
@@ -18,7 +18,7 @@ export const portfolio: Array<Asset> = [
     market: 'Binance',
     quantityHeld: 0.5,
     currentPrice: 45000,
-    priceApiURL: '',
+    priceApiURL: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',
     totalValue: 0,
   },
   {
@@ -28,7 +28,7 @@ export const portfolio: Array<Asset> = [
     market: 'Bitvavo',
     quantityHeld: 0.3,
     currentPrice: 1500,
-    priceApiURL: '',
+    priceApiURL: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur',
     totalValue: 0,
   },
   {
@@ -38,7 +38,7 @@ export const portfolio: Array<Asset> = [
     market: 'Bitvavo',
     quantityHeld: 0.2,
     currentPrice: 45000,
-    priceApiURL: '',
+    priceApiURL: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur',
     totalValue: 0,
   },
   {
@@ -48,7 +48,7 @@ export const portfolio: Array<Asset> = [
     market: 'PancakeSwap',
     quantityHeld: 11300000,
     currentPrice: 0.00000384,
-    priceApiURL: '',
+    priceApiURL: 'https://api.coingecko.com/api/v3/simple/price?ids=safemoon&vs_currencies=eur',
     totalValue: 0,
   },
 ];
