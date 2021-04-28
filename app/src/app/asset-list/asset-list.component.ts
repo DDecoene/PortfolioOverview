@@ -10,18 +10,19 @@ import {Asset} from '../../interfaces/asset';
 })
 export class AssetListComponent implements OnInit {
   portfolio : Array<Asset>;
-  total: number;
+  grandTotal: number;
+  assetPrice : number;
 
   constructor() {
     this.portfolio=portfolio;
    }
 
   ngOnInit(): void {
-    this.total=0;
+    this.grandTotal=0;
   }
 
-  updateTotal(value: number){
-    this.total += value;
+  updateGrandTotal(price: number, asset : Asset){
+    this.grandTotal += (price * asset.quantityHeld);
   }
 
 }

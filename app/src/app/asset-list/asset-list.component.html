@@ -5,15 +5,8 @@
   <ul>
     <li>Market: {{ asset.market }}</li>
     <li>Qty Held: {{ asset.quantityHeld }}</li>
-    <li>Current Price: <app-asset-price [asset]="asset"></app-asset-price></li>
-    <li>
-      Total Value:<b>
-      <app-asset-totalizer
-        [asset]="asset"
-        (assetValueEvent)="updateTotal($event)"
-      ></app-asset-totalizer></b>
-    </li>
+    <app-asset-price [asset]="asset" (priceDataUpdated)="updateGrandTotal($event,asset)"></app-asset-price>
   </ul>
 </div>
 <hr />
-<h2>Grand Total: {{ (total ? total : 0)| currency:'EUR' }}</h2>
+<h2>Grand Total: {{ (grandTotal ? grandTotal : 0)| currency:'EUR' }}</h2>

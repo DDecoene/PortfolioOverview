@@ -9,6 +9,7 @@ import { AssetpriceService, AssetPrice } from 'src/app/assetprice.service';
 })
 export class AssetPriceComponent implements OnInit {
   @Input() asset: Asset;
+  @Output() priceDataUpdated = new EventEmitter<number>();
 
   priceData: AssetPrice;
   errorMessage: string;
@@ -18,6 +19,10 @@ export class AssetPriceComponent implements OnInit {
   ngOnInit(): void {
     this.assetpriceService
       .getPrice(this.asset)
-      .subscribe((data: AssetPrice) => (this.priceData = { ...data }));
+      .subscribe((data: AssetPrice) => {
+        this.priceData = { ...data };
+        this.priceDataUpdated.emit(this.priceData[this.asset.symbol]['eur']);
+      });
   }
+
 }

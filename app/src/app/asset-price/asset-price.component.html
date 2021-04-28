@@ -1,4 +1,17 @@
-<span >{{(priceData ? priceData[asset.symbol]['eur'] : 0 ) | currency:'EUR'}}</span>
-<ng-template #loading>
-  Loading stuff...
-</ng-template>
+<li>
+  Current Price:
+  <span>{{
+    (priceData ? priceData[asset.symbol]["eur"] : 0)
+      | currency: "EUR":"symbol":"1.2-20"
+  }}</span>
+</li>
+<li>
+  Total Value:<b>
+    <span *ngIf="priceData">
+      <app-asset-totalizer
+        [asset]="asset"
+        [priceData]="priceData"
+        
+      ></app-asset-totalizer> </span
+  ></b>
+</li>
