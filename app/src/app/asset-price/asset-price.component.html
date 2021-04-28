@@ -1,1 +1,4 @@
-{{ price }}
+<span >{{(priceData ? priceData[asset.symbol]['eur'] : 0 ) | currency:'EUR'}}</span>
+<ng-template #loading>
+  Loading stuff...
+</ng-template>

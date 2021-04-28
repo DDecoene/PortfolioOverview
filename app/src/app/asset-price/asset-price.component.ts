@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Asset } from 'src/interfaces/asset';
-import { AssetpriceService } from 'src/app/assetprice.service';
+import { AssetpriceService, AssetPrice } from 'src/app/assetprice.service';
 
 @Component({
   selector: 'app-asset-price',
@@ -10,11 +10,14 @@ import { AssetpriceService } from 'src/app/assetprice.service';
 export class AssetPriceComponent implements OnInit {
   @Input() asset: Asset;
 
-  price: number = 0;
+  priceData: AssetPrice;
+  errorMessage: string;
 
-  constructor() {}
+  constructor(private assetpriceService: AssetpriceService) {}
 
   ngOnInit(): void {
-    this.price = this.asset.currentPrice;
+    this.assetpriceService
+      .getPrice(this.asset)
+      .subscribe((data: AssetPrice) => (this.priceData = { ...data }));
   }
 }

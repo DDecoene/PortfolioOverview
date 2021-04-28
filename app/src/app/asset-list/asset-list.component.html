@@ -16,4 +16,4 @@
   </ul>
 </div>
 <hr />
-<h2>Grand Total: {{ total| currency:'EUR' }}</h2>
+<h2>Grand Total: {{ (total ? total : 0)| currency:'EUR' }}</h2>

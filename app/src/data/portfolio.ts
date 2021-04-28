@@ -3,17 +3,17 @@ import { Asset } from "src/interfaces/asset";
 export const portfolio: Array<Asset> = [
   {
     id: 1,
-    symbol: 'ETH',
+    symbol: 'ethereum',
     name: 'Ethereum',
     market: 'Binance',
-    quantityHeld: 0.3,
+    quantityHeld: 0.6,
     currentPrice: 1500,
     priceApiURL: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur',
     totalValue: 0,
   },
   {
     id: 2,
-    symbol: 'BTC',
+    symbol: 'bitcoin',
     name: 'Bitcoin',
     market: 'Binance',
     quantityHeld: 0.5,
@@ -23,7 +23,7 @@ export const portfolio: Array<Asset> = [
   },
   {
     id: 3,
-    symbol: 'ETH',
+    symbol: 'ethereum',
     name: 'Ethereum',
     market: 'Bitvavo',
     quantityHeld: 0.3,
@@ -33,7 +33,7 @@ export const portfolio: Array<Asset> = [
   },
   {
     id: 4,
-    symbol: 'BTC',
+    symbol: 'bitcoin',
     name: 'Bitcoin',
     market: 'Bitvavo',
     quantityHeld: 0.2,
@@ -43,7 +43,7 @@ export const portfolio: Array<Asset> = [
   },
   {
     id: 5,
-    symbol: 'SAFEMOON',
+    symbol: 'safemoon',
     name: 'SafeMoon',
     market: 'PancakeSwap',
     quantityHeld: 11300000,
