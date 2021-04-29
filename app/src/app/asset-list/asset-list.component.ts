@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AssetService } from 'src/services/asset.service';
 
-import {portfolio} from '../../data/portfolio';
 import {Asset} from '../../interfaces/asset';
 
 @Component({
@@ -14,8 +14,8 @@ export class AssetListComponent implements OnInit {
   investmentTotal: number;
   assetPrice : number;
 
-  constructor() {
-    this.portfolio=portfolio;
+  constructor(private assetService:AssetService) {
+    this.portfolio=assetService.getAll();
    }
 
   ngOnInit(): void {

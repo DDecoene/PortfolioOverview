@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Asset } from 'src/interfaces/asset';
-import { AssetPrice } from '../assetprice.service';
+import { AssetPrice } from '../../services/assetprice.service';
 
 @Component({
   selector: 'app-asset-totalizer',
@@ -13,7 +13,7 @@ export class AssetTotalizerComponent implements OnInit {
   @Output() assetValueEvent = new EventEmitter<number>();
 
   value: number;
-  
+
   constructor() {}
 
   ngOnInit(): void {
