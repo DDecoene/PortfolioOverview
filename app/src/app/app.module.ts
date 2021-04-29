@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { AssetListComponent } from './asset-list/asset-list.component';
 import { AssetTotalizerComponent } from './asset-totalizer/asset-totalizer.component';
 import { AssetPriceComponent } from './asset-price/asset-price.component';
+import { AssetAdminComponent } from './asset-admin/asset-admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AssetListComponent,
     AssetTotalizerComponent,
-    AssetPriceComponent
+    AssetPriceComponent,
+    AssetAdminComponent,
   ],
   imports: [
     BrowserModule,
