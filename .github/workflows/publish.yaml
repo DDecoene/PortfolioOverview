@@ -7,4 +7,4 @@ jobs:
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          angular_project_dir: /app/src 
+          angular_project_dir: app/src 
