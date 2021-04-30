@@ -1,7 +1,7 @@
 name: Angular Deploy gh-pages Actions
 on: [push]
 jobs:
-  check-bats-version:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
