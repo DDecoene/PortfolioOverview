@@ -1,11 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <button (click)="fileInput.click()">Upload JSON</button>
+    </div>
+    <div class="col-sm">
+      <button type="button" (click)="onDown('json', false)">
+        Download JSON
+      </button>
+    </div>
+    <div class="col-sm">
+      <button type="button" (click)="onDown('json', true)">
+        Download Example JSON
+      </button>
+    </div>
+  </div>
+</div>
+
 <input
   style="display: none"
   type="file"
   (change)="onFileChanged($event)"
   #fileInput
 />
-<button (click)="fileInput.click()">Upload JSON</button>
-<br>
-<button type="button" (click)="onDown('json', false)">Download JSON</button>
-<br>
-<button type="button" (click)="onDown('json', true)">Download Example JSON</button>

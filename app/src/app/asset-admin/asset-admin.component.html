@@ -1,37 +1,74 @@
 <form [formGroup]="assetForm">
-
-  <label>
-    ID:
-    <input type="text" formControlName="id">
-  </label>
-
-  <label>
-    Symbol:
-    <input type="text" formControlName="symbol">
-  </label>
-
-  <label>
-    Name:
-    <input type="text" formControlName="name">
-  </label>
-
-  <label>
-    Market:
-    <input type="text" formControlName="market">
-  </label>
-
-  <label>
-    Quantity Held:
-    <input type="text" formControlName="quantityHeld">
-  </label>
-
-  <label>
-    Total Investment:
-    <input type="text" formControlName="totalInvestment">
-  </label>
-
-  <label>
-  Price API Url:
-    <input type="text" formControlName="priceApiURL">
-  </label>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        ID:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="id">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        Symbol:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="symbol">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        Name:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        Market:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="market">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        Quantity Held:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="quantityHeld">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        Total Investment:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="totalInvestment">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        Price API Url:
+      </div>
+      <div class="col-sm">
+        <input type="text" formControlName="priceApiURL">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <button (click)="onSave()">Save</button>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <button (click)="onDelete()">Delete</button>
+        </div>
+        </div>
+      <div class="col-sm">
+        <button (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
 </form>
+

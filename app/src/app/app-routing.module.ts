@@ -8,6 +8,7 @@ import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.co
 const routes: Routes = [
   { path: 'list', component: AssetListComponent },
   { path: 'admin', component: AssetAdminComponent },
+  { path: 'admin/:assetId', component: AssetAdminComponent },
   { path: 'upload', component: PortfolioUploadComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
 ];

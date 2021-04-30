@@ -4,20 +4,13 @@
   <span class="lead">
     <div class="container">
       <div class="row">
-        <!-- <div class="col">
-          First in DOM, no order applied
-        </div>
-        <div class="col order-5">
-          Second in DOM, with a larger order
-        </div>
-        <div class="col order-1">
-          Third in DOM, with an order of 1
-        </div> -->
-
         <div *ngFor="let asset of portfolio">
           <div class="col align-self-start">
             <div class="card border-info mb-3" style="width: 30rem">
-              <div class="card-header">Market: {{ asset.market }}</div>
+              <div class="card-header">
+                Market: {{ asset.market }}
+                <button (click)="editAsset(asset.id)">Edit</button>
+              </div>
               <div class="card-body">
                 <h4 class="card-title">Name: {{ asset.name }}</h4>
                 <span class="card-text">
