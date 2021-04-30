@@ -1,1 +1,37 @@
-<p>asset-admin works!</p>
+<form [formGroup]="assetForm">
+
+  <label>
+    ID:
+    <input type="text" formControlName="id">
+  </label>
+
+  <label>
+    Symbol:
+    <input type="text" formControlName="symbol">
+  </label>
+
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+
+  <label>
+    Market:
+    <input type="text" formControlName="market">
+  </label>
+
+  <label>
+    Quantity Held:
+    <input type="text" formControlName="quantityHeld">
+  </label>
+
+  <label>
+    Total Investment:
+    <input type="text" formControlName="totalInvestment">
+  </label>
+
+  <label>
+  Price API Url:
+    <input type="text" formControlName="priceApiURL">
+  </label>
+</form>

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Asset } from 'src/interfaces/asset';
 
-import { portfolio } from 'src/data/portfolio';
+import { AssetTotalizerComponent } from 'src/app/asset-totalizer/asset-totalizer.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AssetService {
-  constructor() {
-    this.init();
-  }
+  constructor() {}
 
-  private init() {
-    //save all items in portfolio to localstorage
+  public saveFromJSON(jsonObject: string) {
+    //save all items in uploaded portfolio to localstorage
+    let portfolio = JSON.parse(jsonObject);
     portfolio.forEach((asset: Asset) => {
       const tmpAsset = localStorage.getItem(asset.id.toString());
       if (!tmpAsset) {
@@ -22,14 +21,17 @@ export class AssetService {
     });
   }
 
-  public getAll(): Asset[] {
+  public getAllAsJSON() : string {
+    return JSON.stringify(this.getAll());
+  }
+
+  public getAll(): Array<Asset> {
     //get everything out of localStorage
-    let myPortfolio: Asset[] = [];
+    let myPortfolio: Array<Asset> = [];
     const items = { ...localStorage };
 
-    for (const key in items)
-    {
-       myPortfolio.push(JSON.parse(items[key]));
+    for (const key in items) {
+      myPortfolio.push(JSON.parse(items[key]));
     }
 
     return myPortfolio;
@@ -45,6 +47,11 @@ export class AssetService {
   }
 
   public saveAsset(asset: Asset): boolean {
+    if (!asset.id) {
+      let count: number = localStorage.length;
+      asset.id = count + 1;
+    }
+
     localStorage.setItem(asset.id.toString(), JSON.stringify(asset));
     return true;
   }

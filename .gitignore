@@ -1,4 +1,4 @@
-app/src/data/portfolio.ts
+app/src/data/portfolio.json
 
 .vscode/*
 !.vscode/settings.json

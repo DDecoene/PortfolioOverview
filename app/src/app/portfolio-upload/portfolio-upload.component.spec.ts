@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AssetAdminComponent } from './asset-admin.component';
+import { PortfolioUploadComponent } from './portfolio-upload.component';
 
-describe('AssetAdminComponent', () => {
-  let component: AssetAdminComponent;
-  let fixture: ComponentFixture<AssetAdminComponent>;
+describe('PortfolioUploadComponent', () => {
+  let component: PortfolioUploadComponent;
+  let fixture: ComponentFixture<PortfolioUploadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AssetAdminComponent ]
+      declarations: [ PortfolioUploadComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AssetAdminComponent);
+    fixture = TestBed.createComponent(PortfolioUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
