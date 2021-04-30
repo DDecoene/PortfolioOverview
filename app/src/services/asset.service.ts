@@ -11,6 +11,7 @@ export class AssetService {
 
   public saveFromJSON(jsonObject: string) {
     //save all items in uploaded portfolio to localstorage
+    localStorage.clear(); //delete everything to avoid clashes
     let portfolio = JSON.parse(jsonObject);
     portfolio.forEach((asset: Asset) => {
       const tmpAsset = localStorage.getItem(asset.id.toString());
@@ -46,13 +47,13 @@ export class AssetService {
     }
   }
 
-  public saveAsset(asset: Asset): boolean {
+  public saveAsset(asset: Asset): number {
     if (!asset.id) {
       let count: number = localStorage.length;
       asset.id = count + 1;
     }
 
     localStorage.setItem(asset.id.toString(), JSON.stringify(asset));
-    return true;
+    return asset.id;
   }
 }

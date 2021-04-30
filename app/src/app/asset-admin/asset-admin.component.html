@@ -1,74 +1,57 @@
 <form [formGroup]="assetForm">
   <div class="container">
     <div class="row">
+      <div class="col-sm">ID:</div>
       <div class="col-sm">
-        ID:
+        <input type="number" formControlName="id" readonly  />
       </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">Symbol:</div>
       <div class="col-sm">
-        <input type="text" formControlName="id">
+        <input type="text" formControlName="symbol" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">Name:</div>
+      <div class="col-sm">
+        <input type="text" formControlName="name" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">Market:</div>
+      <div class="col-sm">
+        <input type="text" formControlName="market" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">Quantity Held:</div>
+      <div class="col-sm">
+        <input type="number" formControlName="quantityHeld" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">Total Investment:</div>
+      <div class="col-sm">
+        <input type="number" formControlName="totalInvestment" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">Price API Url:</div>
+      <div class="col-sm">
+        <input type="text" formControlName="priceApiURL" />
       </div>
     </div>
     <div class="row">
       <div class="col-sm">
-        Symbol:
+        <button (click)="onSave()" class="btn btn-success">Save</button>
       </div>
       <div class="col-sm">
-        <input type="text" formControlName="symbol">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        Name:
+        <button (click)="onDelete()" class="btn btn-danger">Delete</button>
       </div>
       <div class="col-sm">
-        <input type="text" formControlName="name">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        Market:
-      </div>
-      <div class="col-sm">
-        <input type="text" formControlName="market">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        Quantity Held:
-      </div>
-      <div class="col-sm">
-        <input type="text" formControlName="quantityHeld">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        Total Investment:
-      </div>
-      <div class="col-sm">
-        <input type="text" formControlName="totalInvestment">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        Price API Url:
-      </div>
-      <div class="col-sm">
-        <input type="text" formControlName="priceApiURL">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        <button (click)="onSave()">Save</button>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <button (click)="onDelete()">Delete</button>
-        </div>
-        </div>
-      <div class="col-sm">
-        <button (click)="onCancel()">Cancel</button>
+        <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
       </div>
     </div>
   </div>
 </form>
-

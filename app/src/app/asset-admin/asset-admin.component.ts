@@ -42,8 +42,11 @@ export class AssetAdminComponent implements OnInit {
   }
 
   onSave() {
-    const asset: Asset = {...this.assetForm.getRawValue()};
-    this.assetService.saveAsset(asset);
+    let asset: Asset = { ...this.assetForm.getRawValue() };
+    asset.id = this.assetService.saveAsset(asset);
+    this.assetForm.setValue(asset);
+
+    this.router.navigate(['/admin',asset.id.toString()]);
   }
 
   onDelete() {}
