@@ -39,6 +39,15 @@
     >
       Grand Total: {{ (grandTotal ? grandTotal : 0) | currency: "EUR" }}
     </h2>
+    <h2
+      class="text-center"
+      [ngClass]="{
+        'text-success': grandTotal > investmentTotal,
+        'text-danger': grandTotal <= investmentTotal
+      }"
+    >
+      ROI: {{ ((grandTotal - investmentTotal) / investmentTotal * 100) | number : '1.0-2' }}%
+    </h2>
     <hr class="my-4" />
   </span>
 </div>
