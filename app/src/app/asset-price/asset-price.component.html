@@ -13,12 +13,11 @@
   Total Investment:
   <span>{{ asset.totalInvestment | currency: "EUR":"symbol":"1.2-20" }}</span>
 </li>
-<li>
-  Current Value:<b>
-    <span *ngIf="priceData">
-      <app-asset-totalizer
-        [asset]="asset"
-        [priceData]="priceData"
-      ></app-asset-totalizer> </span
-  ></b>
-</li>
+<span  *ngIf="priceData">
+  <!-- Current value -->
+  <app-asset-totalizer
+    [asset]="asset"
+    [priceData]="priceData"
+  ></app-asset-totalizer>
+</span>
+

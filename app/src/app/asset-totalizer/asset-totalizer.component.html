@@ -1,1 +1,10 @@
-{{ value| currency:'EUR' }}
+<li>
+  Original Price:<b> {{ originalPrice | currency: "EUR":"symbol":"1.2-8"}}</b>
+</li>
+<li>
+  <span [ngClass]="{
+    'text-success': value > asset.totalInvestment,
+    'text-danger': asset.totalInvestment >= value
+  }"> Current Value: {{ value | currency: "EUR" }}</span>
+</li>
+

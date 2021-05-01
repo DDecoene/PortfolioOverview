@@ -12,14 +12,17 @@ export class AssetTotalizerComponent implements OnInit {
   @Input() priceData: AssetPrice;
   @Output() assetValueEvent = new EventEmitter<number>();
 
-  value: number;
+  value: number = 0;
+  originalPrice: number = 0;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.value = this.priceData
-      ? this.asset.quantityHeld * this.priceData[this.asset.symbol]['eur']
-      : 0;
-    this.assetValueEvent.emit(this.value);
+    if (this.priceData) {
+      this.value =
+        this.asset.quantityHeld * this.priceData[this.asset.symbol]['eur'];
+      this.originalPrice = this.asset.totalInvestment / this.asset.quantityHeld;
+      this.assetValueEvent.emit(this.value);
+    }
   }
 }
