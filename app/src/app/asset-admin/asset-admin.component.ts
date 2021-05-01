@@ -49,5 +49,7 @@ export class AssetAdminComponent implements OnInit {
     this.router.navigate(['/admin',asset.id.toString()]);
   }
 
-  onDelete() {}
+  onDelete() {
+    console.warn("Not implemented");
+  }
 }
