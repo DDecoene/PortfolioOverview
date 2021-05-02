@@ -47,10 +47,16 @@ export class AssetAdminComponent implements OnInit {
     asset.id = this.assetService.saveAsset(asset);
     this.assetForm.setValue(asset);
 
-    this.router.navigate(['/admin',asset.id.toString()]);
+    //this.router.navigate(['/admin',asset.id.toString()]);
+    this.router.navigate(['/']);
   }
 
   onDelete() {
-    console.warn("Not implemented");
+    let asset: Asset = { ...this.assetForm.getRawValue() };
+    this.assetService.deleteAsset(asset);
+
+    //this.router.navigate(['/admin',asset.id.toString()]);
+    this.router.navigate(['/']);
+
   }
 }

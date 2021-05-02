@@ -6,5 +6,5 @@ export interface Asset {
   quantityHeld: number;
   totalInvestment: number;
   priceApiURL: string;
-  datePurchased: Date;
+  datePurchased: string;
 }

@@ -33,4 +33,8 @@ export class AssetListComponent implements OnInit {
     this.router.navigate(['/admin',assetId.toString()]);
   }
 
+  addAsset(){
+    this.router.navigate([('/admin')]);
+  }
+
 }

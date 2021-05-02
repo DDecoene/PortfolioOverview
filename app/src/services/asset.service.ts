@@ -14,15 +14,11 @@ export class AssetService {
     localStorage.clear(); //delete everything to avoid clashes
     let portfolio = JSON.parse(jsonObject);
     portfolio.forEach((asset: Asset) => {
-      const tmpAsset = localStorage.getItem(asset.id.toString());
-      if (!tmpAsset) {
-        //not in storage, save
-        this.saveAsset(asset);
-      }
+      this.saveAsset(asset);
     });
   }
 
-  public getAllAsJSON() : string {
+  public getAllAsJSON(): string {
     return JSON.stringify(this.getAll());
   }
 
@@ -39,9 +35,11 @@ export class AssetService {
   }
 
   public getAsset(id: number): Asset | null {
-    const tmpAsset = localStorage.getItem(id.toString());
-    if (tmpAsset) {
-      return JSON.parse(tmpAsset);
+    const tmpStrAsset = localStorage.getItem(id.toString());
+    if (tmpStrAsset) {
+      let asset: Asset = JSON.parse(tmpStrAsset);
+      asset = this.checkAsset(asset);
+      return asset;
     } else {
       return null;
     }
@@ -55,5 +53,16 @@ export class AssetService {
 
     localStorage.setItem(asset.id.toString(), JSON.stringify(asset));
     return asset.id;
+  }
+
+  public deleteAsset(asset: Asset) {
+    localStorage.removeItem(asset.id.toString());
+  }
+
+  private checkAsset(asset: Asset): Asset {
+    if (!asset.datePurchased) {
+      asset.datePurchased = new Date(2021, 1, 1).toISOString().slice(0, 10);
+    }
+    return asset;
   }
 }
