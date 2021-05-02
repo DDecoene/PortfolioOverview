@@ -7,4 +7,10 @@
     'text-danger': asset.totalInvestment >= value
   }"> Current Value: {{ value | currency: "EUR" }}</span>
 </li>
+<li>
+  <span [ngClass]="{
+    'text-success': value > asset.totalInvestment,
+    'text-danger': asset.totalInvestment >= value
+  }"> ROI: {{ (value-asset.totalInvestment)/value*100 | number:'1.0-2' }} %</span>
+</li>
 

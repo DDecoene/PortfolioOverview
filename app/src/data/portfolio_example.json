@@ -6,7 +6,8 @@
     "market": "Binance",
     "quantityHeld": 0.05,
     "totalInvestment": 75,
-    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur"
+    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur",
+    "datePurchased": "2021-05-10"
   },
   {
     "id": 3,
@@ -15,7 +16,8 @@
     "market": "Binance",
     "quantityHeld": 0.075,
     "totalInvestment": 25,
-    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=eur"
+    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=eur",
+    "datePurchased": "2021-05-10"
   },
   {
     "id": 4,
@@ -24,7 +26,8 @@
     "market": "Bitvavo",
     "quantityHeld": 0.0456,
     "totalInvestment": 50,
-    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur"
+    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur",
+    "datePurchased": "2021-05-10"
   },
   {
     "id": 5,
@@ -33,7 +36,8 @@
     "market": "Bitvavo",
     "quantityHeld": 0.002567,
     "totalInvestment": 50,
-    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur"
+    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur",
+    "datePurchased": "2021-05-10"
   },
   {
     "id": 6,
@@ -42,6 +46,7 @@
     "market": "PancakeSwap",
     "quantityHeld": 11300000.825,
     "totalInvestment": 75,
-    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=safemoon&vs_currencies=eur"
+    "priceApiURL": "https://api.coingecko.com/api/v3/simple/price?ids=safemoon&vs_currencies=eur",
+    "datePurchased": "2021-05-10"
   }
 ]

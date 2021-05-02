@@ -18,6 +18,7 @@ export class AssetAdminComponent implements OnInit {
     quantityHeld: new FormControl(''),
     totalInvestment: new FormControl(''),
     priceApiURL: new FormControl(''),
+    datePurchased: new FormControl(''),
   });
 
   constructor(

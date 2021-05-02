@@ -1,29 +1,15 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <button class="btn btn-primary" (click)="fileInput.click()">
-        Upload JSON
-      </button>
-    </div>
-    <div class="col-sm">
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="onDown('json', false)"
-      >
-        Download JSON
-      </button>
-    </div>
-    <div class="col-sm">
-      <button
-        type="button"
-        class="btn btn-primary"
-        (click)="onDown('json', true)"
-      >
-        Download Example JSON
-      </button>
-    </div>
-  </div>
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <button class="btn btn-primary" (click)="fileInput.click()">
+    Upload JSON
+  </button>
+
+  <button type="button" class="btn btn-primary" (click)="onDown('json', false)">
+    Download JSON
+  </button>
+
+  <button type="button" class="btn btn-primary" (click)="onDown('json', true)">
+    Download Example JSON
+  </button>
 </div>
 
 <input

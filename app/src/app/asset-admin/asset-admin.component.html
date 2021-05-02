@@ -3,49 +3,55 @@
     <legend>Edit Asset</legend>
     <div class="form-group">
       <label for="id">ID:</label>
-
       <input type="number" class="form-control" formControlName="id" readonly />
-      Symbol:
+    </div>
+    <div class="form-group">
+      <label for="symbol">Symbol:</label>
       <input type="text" class="form-control" formControlName="symbol" />
-      Name:
-
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
       <input type="text" class="form-control" formControlName="name" />
-
-      Market:
+    </div>
+    <div class="form-group">
+      <label for="market">Market:</label>
       <input type="text" class="form-control" formControlName="market" />
-      Quantity Held:
+    </div>
+    <div class="form-group">
+      <label for="id">Quantity Held:</label>
       <input
         type="number"
         class="form-control"
         formControlName="quantityHeld"
       />
-      Total Investment:
+    </div>
+    <div class="form-group">
+      <label for="totalInvestment">Total Investment:</label>
       <input
         type="number"
         class="form-control"
         formControlName="totalInvestment"
       />
-      Price API Url:
+    </div>
+    <div class="form-group">
+      <label for="totalInvestment">Date Purchased:</label>
       <input
-        type="text"
+        type="date"
         class="form-control"
-        class="form-control"
-        formControlName="priceApiURL"
+        formControlName="datePurchased"
       />
     </div>
+    <div class="form-group">
+      <label for="priceApiURL">Price API Url:</label>
+      <input type="text" class="form-control" formControlName="priceApiURL" />
+    </div>
   </fieldset>
-  <div class="row">
-    <div class="col-sm">
-      <button (click)="onSave()" class="btn btn-success">Save</button>
-    </div>
-    <div class="col-sm">
-      <button (click)="onDelete()" class="btn btn-danger">Delete</button>
-    </div>
-    <div class="col-sm">
-      <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
-    </div>
-  </div>
 </form>
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <button (click)="onSave()" class="btn btn-success">Save</button>
+  <button (click)="onDelete()" class="btn btn-danger">Delete</button>
+  <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
+</div>
 <br />
 <br />
 <app-portfolio-upload></app-portfolio-upload>
