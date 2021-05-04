@@ -92,10 +92,7 @@ export class AssetService {
     return tmpAssets;
   }
 
-  private deleteAssetInArray(
-    orgAssets: Array<Asset>,
-    assetToDelete: Asset
-  ): Array<Asset> {
+  private deleteAssetInArray(orgAssets: Array<Asset>,assetToDelete: Asset): Array<Asset> {
     let tmpAssets: Array<Asset> = [];
     orgAssets.forEach((_asset) => {
       if (_asset.id != assetToDelete.id) {
