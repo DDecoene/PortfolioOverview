@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Asset } from 'src/interfaces/asset';
-
-enum STORAGE_KEY_TYPE {
-  CONFIG = 'config',
-  ASSET = 'asset',
-  MARKET = 'market',
-}
-
+import { STORAGE_KEY_TYPE } from './service.helper';
 @Injectable({
   providedIn: 'root',
 })
@@ -59,7 +53,9 @@ export class AssetService {
     let assets = this.getAll();
 
     if (!asset.id) {
-      //Auto assign next available key
+      //Auto assign next available id
+      // TODO the id should be the max value of id + 1
+      //    this will cause a bug if an asset is deleted
       asset.id = assets ? assets.length + 1 : 0;
       assets.push(asset);
     } else {
@@ -74,8 +70,10 @@ export class AssetService {
   public deleteAsset(asset: Asset) {
     let tmpAssets: Array<Asset> = this.getAll();
     if (tmpAssets) {
-      this.deleteAssetInArray(tmpAssets, asset);
+      tmpAssets = this.deleteAssetInArray(tmpAssets, asset);
     }
+    localStorage.removeItem(STORAGE_KEY_TYPE.ASSET); //delete everything
+    localStorage.setItem(STORAGE_KEY_TYPE.ASSET,JSON.stringify(tmpAssets)); //save the new array
   }
 
   private checkAsset(asset: Asset): Asset {

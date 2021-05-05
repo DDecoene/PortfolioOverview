@@ -11,6 +11,6 @@
   <span [ngClass]="{
     'text-success': value > asset.totalInvestment,
     'text-danger': asset.totalInvestment >= value
-  }"> ROI: {{ (value-asset.totalInvestment)/value*100 | number:'1.0-2' }} %</span>
+  }"> ROI: {{ ((value - asset.totalInvestment) / asset.totalInvestment) * 100 | number: "1.0-2" }} %</span>
 </li>
 

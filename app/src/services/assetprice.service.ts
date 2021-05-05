@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Asset } from 'src/interfaces/asset';
+import { ConfigService } from './config.service';
 
 export class AssetPrice {
   [symbol: string]: {
@@ -15,13 +16,14 @@ export class AssetPrice {
 export class AssetpriceService {
   private retrievedAssets = new Map();
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient,private configService:ConfigService) {}
 
   getPrice(asset: Asset): Observable<AssetPrice> {
     if (!this.retrievedAssets.has(asset.symbol)) {
+      const config = this.configService.getConfig();
       this.retrievedAssets.set(
         asset.symbol,
-        this.http.get<AssetPrice>(asset.priceApiURL)
+        this.httpClient.get<AssetPrice>(config.cryptoAPIUrl.replace('__placeholder__',asset.symbol))
       );
     }
     return this.retrievedAssets.get(asset.symbol);

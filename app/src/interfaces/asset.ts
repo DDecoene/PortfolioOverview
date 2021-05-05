@@ -5,6 +5,5 @@ export interface Asset {
   market: string;
   quantityHeld: number;
   totalInvestment: number;
-  priceApiURL: string;
   datePurchased: string;
 }

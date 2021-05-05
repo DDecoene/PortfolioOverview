@@ -1,7 +1,15 @@
-<!-- Totals-->
 <h2 class="text-center text-info">
   Total Invested:
-  {{ (investmentTotal ? investmentTotal : 0) | currency: "EUR" }}
+  {{ (investmentTotal ? investmentTotal : 0) | currency :"EUR" }}
+</h2>
+<h2
+  class="text-center"
+  [ngClass]="{
+    'text-success': grandTotal > investmentTotal,
+    'text-danger': grandTotal <= investmentTotal
+  }"
+>
+  Profit: {{ (grandTotal ? grandTotal - investmentTotal: 0) | currency: "EUR" }}
 </h2>
 <h2
   class="text-center"
