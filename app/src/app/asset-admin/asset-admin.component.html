@@ -1,13 +1,9 @@
 <form [formGroup]="assetForm">
   <fieldset>
-    <legend>Edit Asset</legend>
-    <div class="form-group">
-      <label for="id">ID:</label>
-      <input type="number" class="form-control" formControlName="id" readonly />
-    </div>
+    <legend>{{ (assetForm.controls['id'].value)? 'Edit': 'Add'}} Asset</legend>
     <div class="form-group">
       <label for="symbol">Coin Name:</label>
-      <select formControlName="symbol">
+      <select class="form-select" formControlName="symbol">
         <option [ngValue]="null" disabled>Select Coin</option>
         <option *ngFor="let coin of coinList" [ngValue]="coin.id">{{coin.name}}</option>
       </select>
@@ -44,7 +40,7 @@
 </form>
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
   <button (click)="onSave()" class="btn btn-success">Save</button>
-  <button (click)="onDelete()" class="btn btn-danger">Delete</button>
+  <button (click)="onDelete()" class="btn btn-danger" [disabled]="!assetForm.controls['id'].value">Delete</button>
   <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
 </div>
 <br />

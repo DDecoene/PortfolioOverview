@@ -34,10 +34,14 @@ export class AssetAdminComponent implements OnInit {
 
   ngOnInit(): void {
     let assetId = '';
+
+    // Fill the Coin List
     const list = this.coinListService.getCoinList();
     if (list) {
       this.coinList = list;
     }
+
+    // Get the asset based on the url params
     this.activatedRoute.params.subscribe((params) => {
       assetId = params['assetId'];
     });
