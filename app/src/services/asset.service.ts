@@ -54,9 +54,13 @@ export class AssetService {
 
     if (!asset.id) {
       //Auto assign next available id
-      // TODO the id should be the max value of id + 1
-      //    this will cause a bug if an asset is deleted
-      asset.id = assets ? assets.length + 1 : 0;
+      let max = 0;
+      if (assets) {
+        const idx = assets.map((asset) => asset.id);
+        max = Math.max(...idx);
+      }
+      asset.id = max + 1;
+
       assets.push(asset);
     } else {
       //the asset must exist so update it
