@@ -18,7 +18,7 @@ export class CoinListService {
     }
   }
 
-  public getCoinList() {
+  public getCoinList(): Array<CoinListEntry> | null {
     const coinListStr = localStorage.getItem(STORAGE_KEY_TYPE.COINLIST);
     if (coinListStr) {
       const coinList = JSON.parse(coinListStr);
@@ -30,12 +30,12 @@ export class CoinListService {
     return null;
   }
 
-  public saveCoinList(coinList: CoinListEntry[]) {
+  public saveCoinList(coinList: CoinListEntry[]): void {
     localStorage.removeItem(STORAGE_KEY_TYPE.COINLIST);
     localStorage.setItem(STORAGE_KEY_TYPE.COINLIST, JSON.stringify(coinList));
   }
 
-  updateCoinList() {
+  private updateCoinList(): void {
     const config = this.configService.getConfig();
     let coinList: CoinListEntry[];
     localStorage.removeItem(STORAGE_KEY_TYPE.COINLIST);

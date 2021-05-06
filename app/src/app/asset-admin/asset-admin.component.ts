@@ -23,7 +23,7 @@ export class AssetAdminComponent implements OnInit {
     datePurchased: new FormControl(''),
   });
 
-  coinList: CoinListEntry[];
+  coinList = new Array<CoinListEntry>();
 
   constructor(
     private router: Router,
@@ -33,37 +33,37 @@ export class AssetAdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let assetId: string = '';
-    this.coinList = this.coinListService.getCoinList();
+    let assetId = '';
+    const list = this.coinListService.getCoinList();
+    if (list) {
+      this.coinList = list;
+    }
     this.activatedRoute.params.subscribe((params) => {
       assetId = params['assetId'];
     });
-    const asset: Asset = <Asset>this.assetService.getAsset(Number(assetId));
+    const asset: Asset = this.assetService.getAsset(Number(assetId)) as Asset;
     if (assetId) {
       this.assetForm.setValue({ ...asset });
     }
   }
 
-  onCancel() {
+  onCancel(): void {
     this.router.navigate(['/']);
   }
 
-  onSave() {
-    let asset: Asset = { ...this.assetForm.getRawValue() };
-    let coinListEntry = this.coinList.find((e) => e.id == asset.symbol);
+  onSave(): void {
+    const asset = { ...this.assetForm.getRawValue() } as Asset;
+    const coinListEntry = this.coinList.find((e) => e.id === asset.symbol);
     asset.name = coinListEntry ? coinListEntry.name.toString() : '';
     asset.id = this.assetService.saveAsset(asset);
-    //this.assetForm.setValue(asset);
 
-    //this.router.navigate(['/admin',asset.id.toString()]);
     this.router.navigate(['/']);
   }
 
-  onDelete() {
-    let asset: Asset = { ...this.assetForm.getRawValue() };
+  onDelete(): void {
+    const asset = { ...this.assetForm.getRawValue() } as Asset;
     this.assetService.deleteAsset(asset);
 
-    //this.router.navigate(['/admin',asset.id.toString()]);
     this.router.navigate(['/']);
   }
 }

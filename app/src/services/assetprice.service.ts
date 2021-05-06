@@ -6,7 +6,7 @@ import { ConfigService } from './config.service';
 
 export class AssetPrice {
   [symbol: string]: {
-    [vs_currency: string]: number;
+    [vsCurrency: string]: number;
   };
 }
 
@@ -16,14 +16,14 @@ export class AssetPrice {
 export class AssetpriceService {
   private retrievedAssets = new Map();
 
-  constructor(private httpClient: HttpClient,private configService:ConfigService) {}
+  constructor(private httpClient: HttpClient, private configService: ConfigService) {}
 
   getPrice(asset: Asset): Observable<AssetPrice> {
     if (!this.retrievedAssets.has(asset.symbol)) {
       const config = this.configService.getConfig();
       this.retrievedAssets.set(
         asset.symbol,
-        this.httpClient.get<AssetPrice>(config.cryptoAPIUrl.replace('__placeholder__',asset.symbol))
+        this.httpClient.get<AssetPrice>(config.cryptoAPIUrl.replace('__placeholder__', asset.symbol))
       );
     }
     return this.retrievedAssets.get(asset.symbol);

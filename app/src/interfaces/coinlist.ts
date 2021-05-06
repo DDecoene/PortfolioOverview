@@ -1,5 +1,5 @@
 export interface CoinListEntry {
-  id: String;
-  symbol: String;
-  name: String;
+  id: string;
+  symbol: string;
+  name: string;
 }

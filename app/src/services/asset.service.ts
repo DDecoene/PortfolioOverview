@@ -12,15 +12,12 @@ export class AssetService {
   }
 
   public getAll(): Array<Asset> {
-    //get everything out of localStorage
+    // get everything out of localStorage
     let myPortfolio: Array<Asset> = [];
     const assetstring = localStorage.getItem(STORAGE_KEY_TYPE.ASSET);
 
     if (assetstring) {
-      let assets: Array<Asset> = JSON.parse(assetstring);
-      for (const key in assets) {
-        myPortfolio.push(assets[key]);
-      }
+      myPortfolio = JSON.parse(assetstring);
     }
 
     return myPortfolio;
@@ -39,11 +36,11 @@ export class AssetService {
     return null; // if nothing found
   }
 
-  public saveFromJSON(jsonObject: string) {
-    //save all items in uploaded portfolio to localstorage
-    localStorage.removeItem(STORAGE_KEY_TYPE.ASSET); //delete everything to avoid clashes
+  public saveFromJSON(jsonObject: string): void {
+    // save all items in uploaded portfolio to localstorage
+    localStorage.removeItem(STORAGE_KEY_TYPE.ASSET); // delete everything to avoid clashes
 
-    let portfolio = JSON.parse(jsonObject);
+    const portfolio = JSON.parse(jsonObject);
     portfolio.forEach((asset: Asset) => {
       this.saveAsset(asset);
     });
@@ -53,17 +50,17 @@ export class AssetService {
     let assets = this.getAll();
 
     if (!asset.id) {
-      //Auto assign next available id
+      // Auto assign next available id
       let max = 0;
       if (assets) {
-        const idx = assets.map((asset) => asset.id);
+        const idx = assets.map((myAsset) => myAsset.id);
         max = Math.max(...idx);
       }
       asset.id = max + 1;
 
       assets.push(asset);
     } else {
-      //the asset must exist so update it
+      // the asset must exist so update it
       assets = this.replaceAsset(assets, asset);
     }
 
@@ -71,13 +68,13 @@ export class AssetService {
     return asset.id;
   }
 
-  public deleteAsset(asset: Asset) {
+  public deleteAsset(asset: Asset): void {
     let tmpAssets: Array<Asset> = this.getAll();
     if (tmpAssets) {
       tmpAssets = this.deleteAssetInArray(tmpAssets, asset);
     }
-    localStorage.removeItem(STORAGE_KEY_TYPE.ASSET); //delete everything
-    localStorage.setItem(STORAGE_KEY_TYPE.ASSET,JSON.stringify(tmpAssets)); //save the new array
+    localStorage.removeItem(STORAGE_KEY_TYPE.ASSET); // delete everything
+    localStorage.setItem(STORAGE_KEY_TYPE.ASSET, JSON.stringify(tmpAssets)); // save the new array
   }
 
   private checkAsset(asset: Asset): Asset {
@@ -94,11 +91,14 @@ export class AssetService {
     return tmpAssets;
   }
 
-  private deleteAssetInArray(orgAssets: Array<Asset>,assetToDelete: Asset): Array<Asset> {
+  private deleteAssetInArray(
+    orgAssets: Array<Asset>,
+    assetToDelete: Asset
+  ): Array<Asset> {
     let tmpAssets: Array<Asset> = [];
-    orgAssets.forEach((_asset) => {
-      if (_asset.id != assetToDelete.id) {
-        tmpAssets.push(_asset);
+    orgAssets.forEach((myAsset) => {
+      if (myAsset.id !== assetToDelete.id) {
+        tmpAssets.push(myAsset);
       }
     });
     return tmpAssets;
