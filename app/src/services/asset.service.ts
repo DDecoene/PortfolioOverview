@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Asset } from 'src/interfaces/asset';
+import { IAsset } from 'src/interfaces/asset';
 import { STORAGE_KEY_TYPE } from './service.helper';
 @Injectable({
   providedIn: 'root',
@@ -11,9 +11,9 @@ export class AssetService {
     return JSON.stringify(this.getAll());
   }
 
-  public getAll(): Array<Asset> {
+  public getAll(): Array<IAsset> {
     // get everything out of localStorage
-    let myPortfolio: Array<Asset> = [];
+    let myPortfolio: Array<IAsset> = [];
     const assetstring = localStorage.getItem(STORAGE_KEY_TYPE.ASSET);
 
     if (assetstring) {
@@ -23,7 +23,7 @@ export class AssetService {
     return myPortfolio;
   }
 
-  public getAsset(id: number): Asset | null {
+  public getAsset(id: number): IAsset | null {
     const tmpAssets = this.getAll();
     if (tmpAssets.length) {
       let asset: any = tmpAssets.find((e) => e.id === id);
@@ -41,12 +41,12 @@ export class AssetService {
     localStorage.removeItem(STORAGE_KEY_TYPE.ASSET); // delete everything to avoid clashes
 
     const portfolio = JSON.parse(jsonObject);
-    portfolio.forEach((asset: Asset) => {
+    portfolio.forEach((asset: IAsset) => {
       this.saveAsset(asset);
     });
   }
 
-  public saveAsset(asset: Asset): number {
+  public saveAsset(asset: IAsset): number {
     let assets = this.getAll();
 
     if (!asset.id) {
@@ -68,8 +68,8 @@ export class AssetService {
     return asset.id;
   }
 
-  public deleteAsset(asset: Asset): void {
-    let tmpAssets: Array<Asset> = this.getAll();
+  public deleteAsset(asset: IAsset): void {
+    let tmpAssets: Array<IAsset> = this.getAll();
     if (tmpAssets) {
       tmpAssets = this.deleteAssetInArray(tmpAssets, asset);
     }
@@ -77,25 +77,25 @@ export class AssetService {
     localStorage.setItem(STORAGE_KEY_TYPE.ASSET, JSON.stringify(tmpAssets)); // save the new array
   }
 
-  private checkAsset(asset: Asset): Asset {
+  private checkAsset(asset: IAsset): IAsset {
     if (!asset.datePurchased) {
       asset.datePurchased = new Date(2021, 1, 1).toISOString().slice(0, 10);
     }
     return asset;
   }
 
-  private replaceAsset(orgAssets: Array<Asset>, newAsset: Asset): Array<Asset> {
-    let tmpAssets: Array<Asset> = [];
+  private replaceAsset(orgAssets: Array<IAsset>, newAsset: IAsset): Array<IAsset> {
+    let tmpAssets: Array<IAsset> = [];
     tmpAssets = this.deleteAssetInArray(orgAssets, newAsset);
     tmpAssets.push(newAsset);
     return tmpAssets;
   }
 
   private deleteAssetInArray(
-    orgAssets: Array<Asset>,
-    assetToDelete: Asset
-  ): Array<Asset> {
-    let tmpAssets: Array<Asset> = [];
+    orgAssets: Array<IAsset>,
+    assetToDelete: IAsset
+  ): Array<IAsset> {
+    let tmpAssets: Array<IAsset> = [];
     orgAssets.forEach((myAsset) => {
       if (myAsset.id !== assetToDelete.id) {
         tmpAssets.push(myAsset);

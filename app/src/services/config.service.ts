@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MyConfig } from '../models/MyConfig';
 import { STORAGE_KEY_TYPE } from './service.helper';
-
-export class MyConfig {
-  cryptoAPIUrl: string;
-  cryptoCoinListAPIUrl: string;
-}
 
 @Injectable({
   providedIn: 'root',

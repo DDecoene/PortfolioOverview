@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CoinListEntry } from 'src/interfaces/coinlist';
+import { ICoinListEntry } from 'src/interfaces/coinlist';
 import { ConfigService } from './config.service';
 import { STORAGE_KEY_TYPE } from './service.helper';
 
@@ -12,13 +12,14 @@ export class CoinListService {
     private configService: ConfigService,
     private httpClient: HttpClient
   ) {
+    // Test if a coin list has been downloaded and if not get it.
     const coinList = this.getCoinList();
     if (!coinList) {
       this.updateCoinList();
     }
   }
 
-  public getCoinList(): Array<CoinListEntry> | null {
+  public getCoinList(): Array<ICoinListEntry> | null {
     const coinListStr = localStorage.getItem(STORAGE_KEY_TYPE.COINLIST);
     if (coinListStr) {
       const coinList = JSON.parse(coinListStr);
@@ -30,19 +31,19 @@ export class CoinListService {
     return null;
   }
 
-  public saveCoinList(coinList: CoinListEntry[]): void {
+  public saveCoinList(coinList: ICoinListEntry[]): void {
     localStorage.removeItem(STORAGE_KEY_TYPE.COINLIST);
     localStorage.setItem(STORAGE_KEY_TYPE.COINLIST, JSON.stringify(coinList));
   }
 
   private updateCoinList(): void {
     const config = this.configService.getConfig();
-    let coinList: CoinListEntry[];
+    let coinList: ICoinListEntry[];
     localStorage.removeItem(STORAGE_KEY_TYPE.COINLIST);
 
     this.httpClient
-      .get<CoinListEntry[]>(config.cryptoCoinListAPIUrl)
-      .subscribe((data: CoinListEntry[]) => {
+      .get<ICoinListEntry[]>(config.cryptoCoinListAPIUrl)
+      .subscribe((data: ICoinListEntry[]) => {
         coinList = [ ...data ];
         this.saveCoinList(coinList);
       });

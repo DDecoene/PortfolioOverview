@@ -1,4 +1,4 @@
-export interface Asset {
+export interface IAsset {
   id: number;
   symbol: string;
   name: string;

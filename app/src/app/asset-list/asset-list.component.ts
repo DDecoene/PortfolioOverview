@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssetService } from 'src/services/asset.service';
 
-import { Asset } from '../../interfaces/asset';
+import { IAsset } from '../../interfaces/asset';
 
 @Component({
   selector: 'app-asset-list',
@@ -10,7 +10,7 @@ import { Asset } from '../../interfaces/asset';
   styleUrls: ['./asset-list.component.less'],
 })
 export class AssetListComponent implements OnInit {
-  portfolio: Array<Asset>;
+  portfolio: Array<IAsset>;
   grandTotal: number;
   investmentTotal: number;
   assetPrice: number;
@@ -24,7 +24,7 @@ export class AssetListComponent implements OnInit {
     this.investmentTotal = 0;
   }
 
-  updateGrandTotal(price: number, asset: Asset): void {
+  updateGrandTotal(price: number, asset: IAsset): void {
     this.grandTotal += price * asset.quantityHeld;
     this.investmentTotal += asset.totalInvestment;
   }

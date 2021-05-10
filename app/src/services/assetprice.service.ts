@@ -1,14 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Asset } from 'src/interfaces/asset';
+import { IAsset } from 'src/interfaces/asset';
+import { AssetPrice } from '../models/AssetPrice';
 import { ConfigService } from './config.service';
-
-export class AssetPrice {
-  [symbol: string]: {
-    [vsCurrency: string]: number;
-  };
-}
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +13,7 @@ export class AssetpriceService {
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {}
 
-  getPrice(asset: Asset): Observable<AssetPrice> {
+  getPrice(asset: IAsset): Observable<AssetPrice> {
     if (!this.retrievedAssets.has(asset.symbol)) {
       const config = this.configService.getConfig();
       this.retrievedAssets.set(

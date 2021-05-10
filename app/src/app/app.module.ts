@@ -12,6 +12,7 @@ import { AssetTotalizerComponent } from './asset-totalizer/asset-totalizer.compo
 import { AssetPriceComponent } from './asset-price/asset-price.component';
 import { AssetAdminComponent } from './asset-admin/asset-admin.component';
 import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.component';
+import { MarketAdminComponent } from './market-admin/market-admin.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.co
     AssetPriceComponent,
     AssetAdminComponent,
     PortfolioUploadComponent,
+    MarketAdminComponent,
   ],
   imports: [
     BrowserModule,
