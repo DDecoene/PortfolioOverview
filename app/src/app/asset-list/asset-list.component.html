@@ -1,7 +1,16 @@
-<!-- Totals-->
 <h2 class="text-center text-info">
   Total Invested:
   {{ (investmentTotal ? investmentTotal : 0) | currency: "EUR" }}
+</h2>
+<h2
+  class="text-center"
+  [ngClass]="{
+    'text-success': grandTotal > investmentTotal,
+    'text-danger': grandTotal <= investmentTotal
+  }"
+>
+  Profit:
+  {{ (grandTotal ? grandTotal - investmentTotal : 0) | currency: "EUR" }}
 </h2>
 <h2
   class="text-center"
@@ -26,7 +35,7 @@
   %
 </h2>
 <hr class="my-4" />
-<div class="jumbotron">
+<div class="container">
   <span class="lead">
     <div class="container">
       <div class="row">
@@ -38,37 +47,35 @@
             data-placement="top"
             title="Add new asset"
           >
-            Add Asset
-        </button><br>
+            Add Asset</button
+          ><br />
         </div>
       </div>
-      <div class="row">
-        <div *ngFor="let asset of portfolio">
-          <div class="col align-self-start">
-            <div class="card border-info mb-3" style="width: 30rem">
-              <div class="card-header">Market: {{ asset.market }}</div>
-              <div class="card-body">
-                <h4 class="card-title">
-                  Name: {{ asset.name }}
-                  <button
-                    (click)="editAsset(asset.id)"
-                    class="btn btn-primary"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Edit this asset"
-                  >
-                    Edit
-                  </button>
-                </h4>
-                <span class="card-text">
-                  <ul>
-                    <app-asset-price
-                      [asset]="asset"
-                      (priceDataUpdated)="updateGrandTotal($event, asset)"
-                    ></app-asset-price>
-                  </ul>
-                </span>
-              </div>
+      <div class="row" *ngFor="let asset of portfolio">
+        <div class="col align-self-start">
+          <div class="card border-info mb-3">
+            <div class="card-header">Market: {{ asset.market }}</div>
+            <div class="card-body">
+              <h4 class="card-title">
+                Name: {{ asset.name }}
+                <button
+                  (click)="editAsset(asset.id)"
+                  class="btn btn-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Edit this asset"
+                >
+                  Edit
+                </button>
+              </h4>
+              <span class="card-text">
+                <ul>
+                  <app-asset-price
+                    [asset]="asset"
+                    (priceDataUpdated)="updateGrandTotal($event, asset)"
+                  ></app-asset-price>
+                </ul>
+              </span>
             </div>
           </div>
         </div>

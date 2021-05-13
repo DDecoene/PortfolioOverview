@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AssetService } from 'src/services/asset.service';
-import { FileSaverService } from 'ngx-filesaver'; //https://www.npmjs.com/package/ngx-filesaver
+import { FileSaverService } from 'ngx-filesaver'; // https://www.npmjs.com/package/ngx-filesaver
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -15,7 +15,7 @@ export class PortfolioUploadComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onFileChanged(event: any) {
+  onFileChanged(event: any): void {
     this.selectedFile = event.target.files[0];
     const fileReader = new FileReader();
     fileReader.readAsText(this.selectedFile, 'UTF-8');
@@ -31,7 +31,7 @@ export class PortfolioUploadComponent implements OnInit {
     };
   }
 
-  onDown(type: string, fromRemote: boolean) {
+  onDown(type: string, fromRemote: boolean): void {
     const fileName = `portfolio.${type}`;
 
     if (fromRemote) {
@@ -39,7 +39,7 @@ export class PortfolioUploadComponent implements OnInit {
         observe: 'response',
         responseType: 'blob'
       }).subscribe(res => {
-        this.fileSaverService.save(<Blob>res.body, "portfolio-example.json");
+        this.fileSaverService.save(res.body as Blob, 'portfolio-example.json');
       });
       return;
     }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Asset } from 'src/interfaces/asset';
-import { AssetpriceService, AssetPrice } from 'src/services/assetprice.service';
+import { IAsset } from 'src/interfaces/asset';
+import { AssetpriceService } from 'src/services/assetprice.service';
+import { AssetPrice } from "src/models/AssetPrice";
 
 @Component({
   selector: 'app-asset-price',
@@ -8,7 +9,7 @@ import { AssetpriceService, AssetPrice } from 'src/services/assetprice.service';
   styleUrls: ['./asset-price.component.less'],
 })
 export class AssetPriceComponent implements OnInit {
-  @Input() asset: Asset;
+  @Input() asset: IAsset;
   @Output() priceDataUpdated = new EventEmitter<number>();
 
   priceData: AssetPrice;

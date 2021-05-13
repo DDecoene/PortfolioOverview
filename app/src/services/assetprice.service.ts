@@ -1,14 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { Asset } from 'src/interfaces/asset';
-
-export class AssetPrice {
-  [symbol: string]: {
-    [vs_currency: string]: number;
-  };
-}
+import { IAsset } from 'src/interfaces/asset';
+import { AssetPrice } from '../models/AssetPrice';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +11,14 @@ export class AssetPrice {
 export class AssetpriceService {
   private retrievedAssets = new Map();
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient, private configService: ConfigService) {}
 
-  getPrice(asset: Asset): Observable<AssetPrice> {
+  getPrice(asset: IAsset): Observable<AssetPrice> {
     if (!this.retrievedAssets.has(asset.symbol)) {
+      const config = this.configService.getConfig();
       this.retrievedAssets.set(
         asset.symbol,
-        this.http.get<AssetPrice>(asset.priceApiURL)
+        this.httpClient.get<AssetPrice>(config.cryptoAPIUrl.replace('__placeholder__', asset.symbol))
       );
     }
     return this.retrievedAssets.get(asset.symbol);

@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Asset } from 'src/interfaces/asset';
+
+
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
+import { IAsset } from 'src/interfaces/asset';
+import { ICoinListEntry } from 'src/interfaces/coinlist';
 import { AssetService } from 'src/services/asset.service';
+import { CoinListService } from 'src/services/coinlist.service';
 
 @Component({
   selector: 'app-asset-admin',
@@ -17,46 +24,72 @@ export class AssetAdminComponent implements OnInit {
     market: new FormControl(''),
     quantityHeld: new FormControl(''),
     totalInvestment: new FormControl(''),
-    priceApiURL: new FormControl(''),
     datePurchased: new FormControl(''),
   });
+
+  coinList = new Array<ICoinListEntry>();
+  filteredOptions: Observable<ICoinListEntry[]>;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private assetService: AssetService
+    private assetService: AssetService,
+    private coinListService: CoinListService
   ) {}
 
   ngOnInit(): void {
-    let assetId: string = '';
+    let assetId = '';
+
+    // Fill the Coin List
+    const list = this.coinListService.getCoinList();
+    if (list) {
+      this.coinList = list;
+    }
+
+    // populate the options
+    this.filteredOptions = this.isSymbol.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filterCoinList(value))
+        );
+
+    // Get the asset based on the url params
     this.activatedRoute.params.subscribe((params) => {
       assetId = params['assetId'];
     });
-    const asset: Asset = <Asset>this.assetService.getAsset(Number(assetId));
+    const asset: IAsset = this.assetService.getAsset(Number(assetId)) as IAsset;
     if (assetId) {
       this.assetForm.setValue({ ...asset });
     }
   }
 
-  onCancel() {
+  get isSymbol() {
+    return this.assetForm.get('symbol') as FormControl;
+  }
+
+  onCancel(): void {
     this.router.navigate(['/']);
   }
 
-  onSave() {
-    let asset: Asset = { ...this.assetForm.getRawValue() };
+  onSave(): void {
+    const asset = { ...this.assetForm.getRawValue() } as IAsset;
+    const coinListEntry = this.coinList.find((e) => e.id === asset.symbol);
+    asset.name = coinListEntry ? coinListEntry.name.toString() : '';
     asset.id = this.assetService.saveAsset(asset);
-    this.assetForm.setValue(asset);
 
-    //this.router.navigate(['/admin',asset.id.toString()]);
     this.router.navigate(['/']);
   }
 
-  onDelete() {
-    let asset: Asset = { ...this.assetForm.getRawValue() };
+  onDelete(): void {
+    const asset = { ...this.assetForm.getRawValue() } as IAsset;
     this.assetService.deleteAsset(asset);
 
-    //this.router.navigate(['/admin',asset.id.toString()]);
     this.router.navigate(['/']);
-
   }
+
+  private _filterCoinList(value : string): ICoinListEntry[] {
+    const filterValue = value.toLowerCase();
+
+      return this.coinList.filter(coin => coin.name.toLowerCase().includes(filterValue));
+  };
 }
