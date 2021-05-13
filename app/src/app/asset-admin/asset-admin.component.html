@@ -1,48 +1,86 @@
-<form [formGroup]="assetForm">
-  <fieldset>
-    <legend>{{ (assetForm.controls['id'].value)? 'Edit': 'Add'}} Asset</legend>
-    <div class="form-group">
+<div class="container">
+  <form [formGroup]="assetForm">
+    <fieldset>
+      <legend>
+        {{ assetForm.controls["id"].value ? "Edit" : "Add" }} Asset
+      </legend>
+      <!-- <div class="form-group">
       <label for="symbol">Coin Name:</label>
       <select class="form-select" formControlName="symbol">
         <option [ngValue]="null" disabled>Select Coin</option>
-        <option *ngFor="let coin of coinList" [ngValue]="coin.id">{{coin.name}}</option>
+        <option *ngFor="let coin of coinList" [ngValue]="coin.id">
+          {{ coin.name }}
+        </option>
       </select>
+    </div> -->
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Pick a coin"
+          aria-label="Number"
+          matInput
+          formControlName="symbol"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let coin of filteredOptions | async"
+            [value]="coin"
+          >
+            {{ coin.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+      <div class="form-group">
+        <label for="market">Market:</label> <button
+          type="button"
+          class="btn btn-link"
+        >
+          <img class="add-icon mx-5" src="/assets/add-icon.png" alt="Add Market" />
+        </button>
+        <input type="text" class="form-control" formControlName="market" />
+      </div>
+      <div class="form-group">
+        <label for="id">Quantity Held:</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="quantityHeld"
+        />
+      </div>
+      <div class="form-group">
+        <label for="totalInvestment">Total Investment:</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="totalInvestment"
+        />
+      </div>
+      <div class="form-group">
+        <label for="totalInvestment">Date Purchased:</label>
+        <input
+          type="date"
+          class="form-control"
+          formControlName="datePurchased"
+        />
+      </div>
+    </fieldset>
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <button (click)="onSave()" class="btn btn-success">Save</button>
+      <button
+        (click)="onDelete()"
+        class="btn btn-danger"
+        [disabled]="!assetForm.controls['id'].value"
+      >
+        Delete
+      </button>
+      <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
     </div>
-    <div class="form-group">
-      <label for="market">Market:</label>
-      <input type="text" class="form-control" formControlName="market" />
-    </div>
-    <div class="form-group">
-      <label for="id">Quantity Held:</label>
-      <input
-        type="number"
-        class="form-control"
-        formControlName="quantityHeld"
-      />
-    </div>
-    <div class="form-group">
-      <label for="totalInvestment">Total Investment:</label>
-      <input
-        type="number"
-        class="form-control"
-        formControlName="totalInvestment"
-      />
-    </div>
-    <div class="form-group">
-      <label for="totalInvestment">Date Purchased:</label>
-      <input
-        type="date"
-        class="form-control"
-        formControlName="datePurchased"
-      />
-    </div>
-  </fieldset>
-</form>
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <button (click)="onSave()" class="btn btn-success">Save</button>
-  <button (click)="onDelete()" class="btn btn-danger" [disabled]="!assetForm.controls['id'].value">Delete</button>
-  <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
+  </form>
+  <div style="margin-top: 30px">
+    <app-portfolio-upload></app-portfolio-upload>
+  </div>
 </div>
-<br />
-<br />
-<app-portfolio-upload></app-portfolio-upload>

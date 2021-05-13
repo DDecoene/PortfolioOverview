@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { FileSaverModule } from 'ngx-filesaver';
 
@@ -13,6 +17,7 @@ import { AssetPriceComponent } from './asset-price/asset-price.component';
 import { AssetAdminComponent } from './asset-admin/asset-admin.component';
 import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.component';
 import { MarketAdminComponent } from './market-admin/market-admin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,8 +35,12 @@ import { MarketAdminComponent } from './market-admin/market-admin.component';
     HttpClientModule,
     ReactiveFormsModule,
     FileSaverModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

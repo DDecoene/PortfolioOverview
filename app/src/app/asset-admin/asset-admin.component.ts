@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 import { IAsset } from 'src/interfaces/asset';
 import { ICoinListEntry } from 'src/interfaces/coinlist';
 import { AssetService } from 'src/services/asset.service';
@@ -24,6 +28,7 @@ export class AssetAdminComponent implements OnInit {
   });
 
   coinList = new Array<ICoinListEntry>();
+  filteredOptions: Observable<ICoinListEntry[]>;
 
   constructor(
     private router: Router,
@@ -41,6 +46,13 @@ export class AssetAdminComponent implements OnInit {
       this.coinList = list;
     }
 
+    // populate the options
+    this.filteredOptions = this.isSymbol.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filterCoinList(value))
+        );
+
     // Get the asset based on the url params
     this.activatedRoute.params.subscribe((params) => {
       assetId = params['assetId'];
@@ -49,6 +61,10 @@ export class AssetAdminComponent implements OnInit {
     if (assetId) {
       this.assetForm.setValue({ ...asset });
     }
+  }
+
+  get isSymbol() {
+    return this.assetForm.get('symbol') as FormControl;
   }
 
   onCancel(): void {
@@ -70,4 +86,10 @@ export class AssetAdminComponent implements OnInit {
 
     this.router.navigate(['/']);
   }
+
+  private _filterCoinList(value : string): ICoinListEntry[] {
+    const filterValue = value.toLowerCase();
+
+      return this.coinList.filter(coin => coin.name.toLowerCase().includes(filterValue));
+  };
 }
