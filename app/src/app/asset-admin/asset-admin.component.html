@@ -34,11 +34,13 @@
       </div>
 
       <div class="form-group">
-        <label for="market">Market:</label> <button
-          type="button"
-          class="btn btn-link"
-        >
-          <img class="add-icon mx-5" src="/assets/add-icon.png" alt="Add Market" />
+        <label for="market">Market:</label>
+        <button (click)="onAddMarket()" type="button" class="btn btn-link">
+          <img
+            class="add-icon mx-5"
+            src="/assets/add-icon.png"
+            alt="Add Market"
+          />
         </button>
         <input type="text" class="form-control" formControlName="market" />
       </div>

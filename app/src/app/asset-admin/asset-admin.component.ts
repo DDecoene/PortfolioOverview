@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { IAsset } from 'src/interfaces/asset';
 import { ICoinListEntry } from 'src/interfaces/coinlist';
@@ -47,11 +46,10 @@ export class AssetAdminComponent implements OnInit {
     }
 
     // populate the options
-    this.filteredOptions = this.isSymbol.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filterCoinList(value))
-        );
+    this.filteredOptions = this.isSymbol.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filterCoinList(value))
+    );
 
     // Get the asset based on the url params
     this.activatedRoute.params.subscribe((params) => {
@@ -71,13 +69,15 @@ export class AssetAdminComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  onSave(): void {
-    const asset = { ...this.assetForm.getRawValue() } as IAsset;
+  onSave(navigate: boolean = true): IAsset {
+    let asset = { ...this.assetForm.getRawValue() } as IAsset;
     const coinListEntry = this.coinList.find((e) => e.id === asset.symbol);
     asset.name = coinListEntry ? coinListEntry.name.toString() : '';
-    asset.id = this.assetService.saveAsset(asset);
+    asset = this.assetService.saveAsset(asset);
 
-    this.router.navigate(['/']);
+    if (navigate) this.router.navigate(['/']);
+
+    return asset;
   }
 
   onDelete(): void {
@@ -87,9 +87,19 @@ export class AssetAdminComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  private _filterCoinList(value : string): ICoinListEntry[] {
+  onAddMarket() {
+    let asset = this.onSave(false);
+    this.assetForm.setValue({ ...asset }); //in case something fails, we would have a double entry
+    this.router.navigate(['marketadmin'], {
+      queryParams: { returnUrl: 'admin/' + asset.id },
+    });
+  }
+
+  private _filterCoinList(value: string): ICoinListEntry[] {
     const filterValue = value.toLowerCase();
 
-      return this.coinList.filter(coin => coin.name.toLowerCase().includes(filterValue));
-  };
+    return this.coinList.filter((coin) =>
+      coin.name.toLowerCase().includes(filterValue)
+    );
+  }
 }

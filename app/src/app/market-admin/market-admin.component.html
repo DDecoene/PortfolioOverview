@@ -1,1 +1,28 @@
-<p>market-admin works!</p>
+<mat-card>
+  <mat-card-title> Add Market </mat-card-title>
+  <mat-card-content>
+    <ng-container>
+      <form [formGroup]="marketForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="id"/>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="symbol"
+            placeholder="Symbol"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Name" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="marketUrl" placeholder="Url" />
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="onSave()">Save</button>
+        <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+        <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
+      </form>
+    </ng-container>
+  </mat-card-content>
+</mat-card>

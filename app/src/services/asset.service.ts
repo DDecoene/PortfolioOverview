@@ -46,7 +46,7 @@ export class AssetService {
     });
   }
 
-  public saveAsset(asset: IAsset): number {
+  public saveAsset(asset: IAsset): IAsset {
     let assets = this.getAll();
 
     if (!asset.id) {
@@ -54,7 +54,7 @@ export class AssetService {
       let max = 0;
       if (assets) {
         const idx = assets.map((myAsset) => myAsset.id);
-        max = Math.max(...idx);
+        max = idx.length ? Math.max(...idx) : 0;
       }
       asset.id = max + 1;
 
@@ -65,7 +65,7 @@ export class AssetService {
     }
 
     localStorage.setItem(STORAGE_KEY_TYPE.ASSET, JSON.stringify(assets));
-    return asset.id;
+    return asset;
   }
 
   public deleteAsset(asset: IAsset): void {
@@ -84,7 +84,10 @@ export class AssetService {
     return asset;
   }
 
-  private replaceAsset(orgAssets: Array<IAsset>, newAsset: IAsset): Array<IAsset> {
+  private replaceAsset(
+    orgAssets: Array<IAsset>,
+    newAsset: IAsset
+  ): Array<IAsset> {
     let tmpAssets: Array<IAsset> = [];
     tmpAssets = this.deleteAssetInArray(orgAssets, newAsset);
     tmpAssets.push(newAsset);
