@@ -26,7 +26,7 @@
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
             *ngFor="let coin of filteredOptions | async"
-            [value]="coin"
+            [value]="coin.id"
           >
             {{ coin.name }}
           </mat-option>
