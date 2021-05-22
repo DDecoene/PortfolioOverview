@@ -7,8 +7,10 @@ import { map, startWith } from 'rxjs/operators';
 
 import { IAsset } from 'src/interfaces/asset';
 import { ICoinListEntry } from 'src/interfaces/coinlist';
+import { Market } from 'src/models/Market';
 import { AssetService } from 'src/services/asset.service';
 import { CoinListService } from 'src/services/coinlist.service';
+import { MarketService } from 'src/services/market.service';
 
 @Component({
   selector: 'app-asset-admin',
@@ -27,22 +29,26 @@ export class AssetAdminComponent implements OnInit {
   });
 
   coinList = new Array<ICoinListEntry>();
+  marketList = new Array<Market>();
   filteredOptions: Observable<ICoinListEntry[]>;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private assetService: AssetService,
-    private coinListService: CoinListService
+    private coinListService: CoinListService,
+    private marketService: MarketService
   ) {}
 
   ngOnInit(): void {
     let assetId = '';
 
     // Fill the Coin List
-    const list = this.coinListService.getCoinList();
-    if (list) {
-      this.coinList = list;
+    if (!this.coinList.length) {
+      const list = this.coinListService.getCoinList();
+      if (list) {
+        this.coinList = list;
+      }
     }
 
     // populate the options
@@ -50,6 +56,9 @@ export class AssetAdminComponent implements OnInit {
       startWith(''),
       map((value) => this._filterCoinList(value))
     );
+
+    // Get all markets
+    this.marketList = this.marketService.getAllMarkets();
 
     // Get the asset based on the url params
     this.activatedRoute.params.subscribe((params) => {
@@ -59,6 +68,7 @@ export class AssetAdminComponent implements OnInit {
     if (assetId) {
       this.assetForm.setValue({ ...asset });
     }
+
   }
 
   get isSymbol() {
@@ -89,7 +99,7 @@ export class AssetAdminComponent implements OnInit {
 
   onAddMarket() {
     let asset = this.onSave(false);
-    this.assetForm.setValue({ ...asset }); //in case something fails, we would have a double entry
+    this.assetForm.setValue({ ...asset }); // in case something fails, we would have a double entry
     this.router.navigate(['marketadmin'], {
       queryParams: { returnUrl: 'admin/' + asset.id },
     });

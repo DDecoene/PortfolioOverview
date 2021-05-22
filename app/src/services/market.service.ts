@@ -67,6 +67,12 @@ export class MarketService {
     return market ? market : new Market();
   }
 
+  public getMarketBySymbol(symbol: string):Market{
+    const markets = this.getAllMarkets();
+    const market = markets.find((m) => m.symbol === symbol);
+    return market ? market : new Market();
+  }
+
   private replaceMarket(
     orgMarkets: Array<Market>,
     newMarket: Market

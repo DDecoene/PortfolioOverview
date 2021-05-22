@@ -54,19 +54,11 @@
       <div class="row" *ngFor="let asset of portfolio">
         <div class="col align-self-start">
           <div class="card border-info mb-3">
-            <div class="card-header">Market: {{ asset.market }}</div>
+            <div class="card-header">Name: {{ asset.name }}</div>
             <div class="card-body">
               <h4 class="card-title">
-                Name: {{ asset.name }}
-                <button
-                  (click)="editAsset(asset.id)"
-                  class="btn btn-primary"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Edit this asset"
-                >
-                  Edit
-                </button>
+                Market: {{ asset.market | marketname }}
+
               </h4>
               <span class="card-text">
                 <ul>
@@ -77,6 +69,15 @@
                 </ul>
               </span>
             </div>
+            <button
+                  (click)="editAsset(asset.id)"
+                  class="btn btn-primary"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Edit this asset"
+                >
+                  Edit
+                </button>
           </div>
         </div>
       </div>

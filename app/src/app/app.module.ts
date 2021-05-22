@@ -15,6 +15,7 @@ import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.co
 import { MarketAdminComponent } from './market-admin/market-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { MarketnamePipe } from './marketname.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MaterialModule } from './material/material.module';
     AssetAdminComponent,
     PortfolioUploadComponent,
     MarketAdminComponent,
+    MarketnamePipe,
   ],
   imports: [
     BrowserModule,
