@@ -1,16 +1,19 @@
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <button class="btn btn-primary" (click)="fileInput.click()">
-    Upload JSON
-  </button>
+<mat-card>
+  <mat-card-title> Import / Export Data </mat-card-title>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      Upload JSON
+    </button>
 
-  <button type="button" class="btn btn-primary" (click)="onDown('json', false)">
-    Download JSON
-  </button>
+    <button mat-raised-button color="primary" (click)="onDown('json', false)">
+      Download JSON
+    </button>
 
-  <button type="button" class="btn btn-primary" (click)="onDown('json', true)">
-    Download Example JSON
-  </button>
-</div>
+    <button mat-raised-button color="primary" (click)="onDown('json', true)">
+      Download Example JSON
+    </button>
+  </mat-card-actions>
+</mat-card>
 
 <input
   style="display: none"

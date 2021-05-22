@@ -1,5 +1,6 @@
 export interface IMarket {
-  id: string;
+  id: number;
+  symbol: string;
   name: string;
   marketUrl: string;
 }

@@ -3,10 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
 import { FileSaverModule } from 'ngx-filesaver';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +14,11 @@ import { AssetAdminComponent } from './asset-admin/asset-admin.component';
 import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.component';
 import { MarketAdminComponent } from './market-admin/market-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { MarketnamePipe } from './marketname.pipe';
+import { MarketurlPipe } from './marketurl.pipe';
+import { MarketListComponent } from './market-list/market-list.component';
+import { NaviComponent } from './navi/navi.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AssetAdminComponent,
     PortfolioUploadComponent,
     MarketAdminComponent,
+    MarketnamePipe,
+    MarketurlPipe,
+    MarketListComponent,
+    NaviComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FileSaverModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],

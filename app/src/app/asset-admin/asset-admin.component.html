@@ -1,19 +1,14 @@
-<div class="container">
-  <form [formGroup]="assetForm">
-    <fieldset>
-      <legend>
-        {{ assetForm.controls["id"].value ? "Edit" : "Add" }} Asset
-      </legend>
-      <!-- <div class="form-group">
-      <label for="symbol">Coin Name:</label>
-      <select class="form-select" formControlName="symbol">
-        <option [ngValue]="null" disabled>Select Coin</option>
-        <option *ngFor="let coin of coinList" [ngValue]="coin.id">
-          {{ coin.name }}
-        </option>
-      </select>
-    </div> -->
-      <div class="form-group">
+<form [formGroup]="assetForm" class="assetform">
+  <mat-card>
+    <!-- Title of an Card -->
+    <mat-card-title>
+      {{ assetForm.controls["id"].value ? "Edit" : "Add" }} Asset
+    </mat-card-title>
+
+    <!-- Actual content starts from here -->
+    <mat-card-content>
+      <mat-form-field class="assetform-input">
+        <mat-label>Coin</mat-label>
         <input
           type="text"
           class="form-control"
@@ -22,6 +17,7 @@
           matInput
           formControlName="symbol"
           [matAutocomplete]="auto"
+          required
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
@@ -31,56 +27,68 @@
             {{ coin.name }}
           </mat-option>
         </mat-autocomplete>
-      </div>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="market">Market:</label> <button
-          type="button"
-          class="btn btn-link"
-        >
-          <img class="add-icon mx-5" src="/assets/add-icon.png" alt="Add Market" />
-        </button>
-        <input type="text" class="form-control" formControlName="market" />
-      </div>
-      <div class="form-group">
-        <label for="id">Quantity Held:</label>
+      <mat-form-field class="assetform-input">
+        <mat-label>Market</mat-label>
+        <mat-select formControlName="market"
+        required>
+          <mat-option *ngFor="let market of marketList" [value]="market.symbol">
+            {{ market.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="onAddMarket()" type="button">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <mat-form-field class="assetform-input">
+        <mat-label for="id">Quantity Held:</mat-label>
         <input
+          matInput
           type="number"
           class="form-control"
           formControlName="quantityHeld"
+          required
         />
-      </div>
-      <div class="form-group">
-        <label for="totalInvestment">Total Investment:</label>
+      </mat-form-field>
+
+      <mat-form-field class="assetform-input">
+        <mat-label for="totalInvestment">Total Investment:</mat-label>
         <input
+          matInput
           type="number"
           class="form-control"
           formControlName="totalInvestment"
+          required
         />
-      </div>
-      <div class="form-group">
-        <label for="totalInvestment">Date Purchased:</label>
+      </mat-form-field>
+
+      <mat-form-field class="assetform-input">
+        <mat-label for="totalInvestment">Date Purchased:</mat-label>
         <input
+          matInput
           type="date"
           class="form-control"
           formControlName="datePurchased"
+          required
         />
-      </div>
-    </fieldset>
+      </mat-form-field>
 
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <button (click)="onSave()" class="btn btn-success">Save</button>
-      <button
-        (click)="onDelete()"
-        class="btn btn-danger"
-        [disabled]="!assetForm.controls['id'].value"
-      >
-        Delete
-      </button>
-      <button (click)="onCancel()" class="btn btn-primary">Cancel</button>
-    </div>
-  </form>
+      <mat-card-actions layout="row" layout-align="start center">
+        <button mat-raised-button color="accent" (click)="onSave()">
+          Save
+        </button>
+        <button mat-raised-button color="warn" (click)="onDelete()">
+          Delete
+        </button>
+        <button mat-raised-button color="primary" (click)="onCancel()">
+          Cancel
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
   <div style="margin-top: 30px">
     <app-portfolio-upload></app-portfolio-upload>
   </div>
-</div>
+</form>

@@ -27,7 +27,7 @@ export class CoinListService {
         return coinList;
       }
     }
-
+    
     return null;
   }
 
