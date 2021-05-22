@@ -20,9 +20,22 @@
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions layout="row" layout-align="start center">
-      <button mat-raised-button color="accent" (click)="onSave()" style="margin-right:8px;">Save</button>
-      <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
-      <button mat-raised-button color="primary" (click)="onCancel()">Cancel</button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="onSave()"
+        style="margin-right: 8px"
+      >
+        Save
+      </button>
+      <button mat-raised-button color="warn" (click)="onDelete()">
+        Delete
+      </button>
+      <button mat-raised-button color="primary" (click)="onCancel()">
+        Cancel
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>
+
+<app-market-list></app-market-list>

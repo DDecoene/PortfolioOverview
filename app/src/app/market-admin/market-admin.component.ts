@@ -26,6 +26,7 @@ export class MarketAdminComponent implements OnInit {
 
   ngOnInit(): void {
     let marketId = '';
+
     // Get the market based on the url params
     this.activatedRoute.params.subscribe((params) => {
       marketId = params['marketId'];

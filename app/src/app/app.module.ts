@@ -16,6 +16,9 @@ import { MarketAdminComponent } from './market-admin/market-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { MarketnamePipe } from './marketname.pipe';
+import { MarketurlPipe } from './marketurl.pipe';
+import { MarketListComponent } from './market-list/market-list.component';
+import { NaviComponent } from './navi/navi.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { MarketnamePipe } from './marketname.pipe';
     PortfolioUploadComponent,
     MarketAdminComponent,
     MarketnamePipe,
+    MarketurlPipe,
+    MarketListComponent,
+    NaviComponent,
   ],
   imports: [
     BrowserModule,

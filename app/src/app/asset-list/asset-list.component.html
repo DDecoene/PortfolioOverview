@@ -1,86 +1,77 @@
-<h2 class="text-center text-info">
-  Total Invested:
-  {{ (investmentTotal ? investmentTotal : 0) | currency: "EUR" }}
-</h2>
-<h2
-  class="text-center"
-  [ngClass]="{
-    'text-success': grandTotal > investmentTotal,
-    'text-danger': grandTotal <= investmentTotal
-  }"
->
-  Profit:
-  {{ (grandTotal ? grandTotal - investmentTotal : 0) | currency: "EUR" }}
-</h2>
-<h2
-  class="text-center"
-  [ngClass]="{
-    'text-success': grandTotal > investmentTotal,
-    'text-danger': grandTotal <= investmentTotal
-  }"
->
-  Grand Total: {{ (grandTotal ? grandTotal : 0) | currency: "EUR" }}
-</h2>
-<h2
-  class="text-center"
-  [ngClass]="{
-    'text-success': grandTotal > investmentTotal,
-    'text-danger': grandTotal <= investmentTotal
-  }"
->
-  ROI:
-  {{
-    ((grandTotal - investmentTotal) / investmentTotal) * 100 | number: "1.0-2"
-  }}
-  %
-</h2>
-<hr class="my-4" />
-<div class="container">
-  <span class="lead">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2">
-          <button
-            (click)="addAsset()"
-            class="btn btn-primary"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Add new asset"
-          >
-            Add Asset</button
-          ><br />
-        </div>
-      </div>
-      <div class="row" *ngFor="let asset of portfolio">
-        <div class="col align-self-start">
-          <div class="card border-info mb-3">
-            <div class="card-header">Name: {{ asset.name }}</div>
-            <div class="card-body">
-              <h4 class="card-title">
-                Market: {{ asset.market | marketname }}
-
-              </h4>
-              <span class="card-text">
-                <ul>
-                  <app-asset-price
-                    [asset]="asset"
-                    (priceDataUpdated)="updateGrandTotal($event, asset)"
-                  ></app-asset-price>
-                </ul>
-              </span>
-            </div>
-            <button
-                  (click)="editAsset(asset.id)"
-                  class="btn btn-primary"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Edit this asset"
-                >
-                  Edit
-                </button>
-          </div>
-        </div>
-      </div>
+<mat-card class="mycard">
+  <mat-card-content>
+    <div class="totals">
+      Total Invested:
+      {{ (investmentTotal ? investmentTotal : 0) | currency: "EUR" }}
     </div>
-  </span>
-</div>
+    <div class="totals"
+      [ngClass]="{
+        'text-success': grandTotal > investmentTotal,
+        'text-danger': grandTotal <= investmentTotal
+      }"
+    >
+      Profit:
+      {{ (grandTotal ? grandTotal - investmentTotal : 0) | currency: "EUR" }}
+    </div>
+    <div class="totals"
+      [ngClass]="{
+        'text-success': grandTotal > investmentTotal,
+        'text-danger': grandTotal <= investmentTotal
+      }"
+    >
+      Grand Total: {{ (grandTotal ? grandTotal : 0) | currency: "EUR" }}
+    </div>
+    <div class="totals"
+      [ngClass]="{
+        'text-success': grandTotal > investmentTotal,
+        'text-danger': grandTotal <= investmentTotal
+      }"
+    >
+      ROI:
+      {{
+        ((grandTotal - investmentTotal) / investmentTotal) * 100
+          | number: "1.0-2"
+      }}
+      %
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngFor="let asset of portfolio" class="mycard">
+  <mat-card-title>Name: {{ asset.name }}</mat-card-title>
+  <mat-card-subtitle>
+    <a href="{{ asset.market | marketurl }}" target="_blank">
+      Market: {{ asset.market | marketname }}
+    </a>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <ul>
+      <app-asset-price
+        [asset]="asset"
+        (priceDataUpdated)="updateGrandTotal($event, asset)"
+      >
+      </app-asset-price>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      (click)="editAsset(asset.id)"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Edit this asset"
+    >
+      Edit
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<button
+  mat-raised-button
+  (click)="addAsset()"
+  data-toggle="tooltip"
+  data-placement="top"
+  title="Add new asset"
+>
+  Add Asset
+</button>

@@ -21,7 +21,6 @@
     "@angular/platform-browser": "~11.2.11",
     "@angular/platform-browser-dynamic": "~11.2.11",
     "@angular/router": "~11.2.11",
-    "bootstrap": "^5.0.0",
     "dotenv": "^8.2.0",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
