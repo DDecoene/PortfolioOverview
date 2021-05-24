@@ -3,14 +3,14 @@
 </li>
 <li>
   <span [ngClass]="{
-    'text-success': value > asset.totalInvestment,
-    'text-danger': asset.totalInvestment >= value
+    'color-profit': value > asset.totalInvestment,
+    'color-loss': asset.totalInvestment >= value
   }"> Current Value: {{ value | currency: "EUR" }}</span>
 </li>
 <li>
   <span [ngClass]="{
-    'text-success': value > asset.totalInvestment,
-    'text-danger': asset.totalInvestment >= value
+    'color-profit': value > asset.totalInvestment,
+    'color-loss': asset.totalInvestment >= value
   }"> ROI: {{ ((value - asset.totalInvestment) / asset.totalInvestment) * 100 | number: "1.0-2" }} %</span>
 </li>
 

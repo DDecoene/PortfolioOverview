@@ -8,7 +8,7 @@ import { MarketService } from 'src/services/market.service';
 @Component({
   selector: 'app-market-admin',
   templateUrl: './market-admin.component.html',
-  styleUrls: ['./market-admin.component.less'],
+  styleUrls: ['./market-admin.component.scss'],
 })
 export class MarketAdminComponent implements OnInit {
   marketForm = new FormGroup({
@@ -17,6 +17,8 @@ export class MarketAdminComponent implements OnInit {
     name: new FormControl(''),
     marketUrl: new FormControl(''),
   });
+
+  currentMarket = new Market();
 
   constructor(
     private router: Router,
@@ -29,39 +31,38 @@ export class MarketAdminComponent implements OnInit {
 
     // Get the market based on the url params
     this.activatedRoute.params.subscribe((params) => {
-      marketId = params['marketId'];
+
+      this.currentMarket = this.marketService.getMarket(
+        Number(params['marketId'])
+      ) as Market;
+      if (this.currentMarket.id) {
+        this.marketForm.setValue({ ...this.currentMarket });
+      }
     });
-    const market: Market = this.marketService.getMarket(
-      Number(marketId)
-    ) as Market;
-    if (marketId) {
-      this.marketForm.setValue({ ...market });
-    }
   }
 
   onSave(navigate: boolean = true) {
     const market = { ...this.marketForm.getRawValue() } as Market;
     this.marketService.saveMarket(market);
 
-    if (navigate)
-    this.navigateBackToAsset();
+    if (navigate) this.navigateBackToAsset();
   }
 
   onDelete() {
     const market = { ...this.marketForm.getRawValue() } as Market;
     this.marketService.deleteMarket(market);
+
+    this.navigateBackToAsset();
   }
 
   onCancel() {
     this.navigateBackToAsset();
   }
 
-  navigateBackToAsset(){
-    let returnUrl = '/';
+  navigateBackToAsset() {
     this.activatedRoute.queryParams.subscribe((params) => {
-      returnUrl = params.returnUrl;
+      this.router.navigate([params.returnUrl || '/']);
     });
-    this.router.navigate([returnUrl]);
   }
 
   onSubmit() {

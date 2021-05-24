@@ -15,7 +15,7 @@ import { MarketService } from 'src/services/market.service';
 @Component({
   selector: 'app-asset-admin',
   templateUrl: './asset-admin.component.html',
-  styleUrls: ['./asset-admin.component.less'],
+  styleUrls: ['./asset-admin.component.scss'],
 })
 export class AssetAdminComponent implements OnInit {
   assetForm = new FormGroup({
