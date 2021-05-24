@@ -1,4 +1,4 @@
-<form [formGroup]="marketForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="marketForm">
   <mat-card class="marketform">
     <mat-card-title class="marketform-title"> Add Market </mat-card-title>
     <mat-card-content>
@@ -38,4 +38,4 @@
   </mat-card>
 </form>
 
-<app-market-list></app-market-list>
+<app-market-list [currentMarket]="currentMarket"></app-market-list>

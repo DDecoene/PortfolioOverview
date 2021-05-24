@@ -6,7 +6,7 @@ import { AssetPrice } from "src/models/AssetPrice";
 @Component({
   selector: 'app-asset-price',
   templateUrl: './asset-price.component.html',
-  styleUrls: ['./asset-price.component.less'],
+  styleUrls: ['./asset-price.component.scss'],
 })
 export class AssetPriceComponent implements OnInit {
   @Input() asset: IAsset;

@@ -6,8 +6,8 @@
     </div>
     <div class="totals"
       [ngClass]="{
-        'text-success': grandTotal > investmentTotal,
-        'text-danger': grandTotal <= investmentTotal
+        'color-profit': grandTotal > investmentTotal,
+        'color-loss': grandTotal <= investmentTotal
       }"
     >
       Profit:
@@ -15,16 +15,16 @@
     </div>
     <div class="totals"
       [ngClass]="{
-        'text-success': grandTotal > investmentTotal,
-        'text-danger': grandTotal <= investmentTotal
+        'color-profit': grandTotal > investmentTotal,
+        'color-loss': grandTotal <= investmentTotal
       }"
     >
       Grand Total: {{ (grandTotal ? grandTotal : 0) | currency: "EUR" }}
     </div>
     <div class="totals"
       [ngClass]="{
-        'text-success': grandTotal > investmentTotal,
-        'text-danger': grandTotal <= investmentTotal
+        'color-profit': grandTotal > investmentTotal,
+        'color-loss': grandTotal <= investmentTotal
       }"
     >
       ROI:

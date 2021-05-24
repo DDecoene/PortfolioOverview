@@ -47,11 +47,7 @@ export class MarketService {
     let oldMarketArray = this.getAllMarkets();
     if (oldMarketArray) {
       localStorage.removeItem(STORAGE_KEY_TYPE.MARKET);
-      oldMarketArray.forEach((element) => {
-        if (element !== market) {
-          newMarketArray.push(element);
-        }
-      });
+      newMarketArray = oldMarketArray.filter((_market)=> _market.id != market.id);
       if (newMarketArray) {
         localStorage.setItem(
           STORAGE_KEY_TYPE.MARKET,

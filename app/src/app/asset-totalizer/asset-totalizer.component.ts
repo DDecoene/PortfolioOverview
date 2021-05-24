@@ -5,7 +5,7 @@ import { AssetPrice } from "../../models/AssetPrice";
 @Component({
   selector: 'app-asset-totalizer',
   templateUrl: './asset-totalizer.component.html',
-  styleUrls: ['./asset-totalizer.component.less'],
+  styleUrls: ['./asset-totalizer.component.scss'],
 })
 export class AssetTotalizerComponent implements OnInit {
   @Input() asset: IAsset;

@@ -7,7 +7,7 @@ import { IAsset } from '../../interfaces/asset';
 @Component({
   selector: 'app-asset-list',
   templateUrl: './asset-list.component.html',
-  styleUrls: ['./asset-list.component.less'],
+  styleUrls: ['./asset-list.component.scss'],
 })
 export class AssetListComponent implements OnInit {
   portfolio: Array<IAsset>;

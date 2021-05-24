@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-portfolio-upload',
   templateUrl: './portfolio-upload.component.html',
-  styleUrls: ['./portfolio-upload.component.less'],
+  styleUrls: ['./portfolio-upload.component.scss'],
 })
 export class PortfolioUploadComponent implements OnInit {
   selectedFile: File;
