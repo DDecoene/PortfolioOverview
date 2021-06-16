@@ -4,7 +4,8 @@
       Total Invested:
       {{ (investmentTotal ? investmentTotal : 0) | currency: "EUR" }}
     </div>
-    <div class="totals"
+    <div
+      class="totals"
       [ngClass]="{
         'color-profit': grandTotal > investmentTotal,
         'color-loss': grandTotal <= investmentTotal
@@ -13,7 +14,8 @@
       Profit:
       {{ (grandTotal ? grandTotal - investmentTotal : 0) | currency: "EUR" }}
     </div>
-    <div class="totals"
+    <div
+      class="totals"
       [ngClass]="{
         'color-profit': grandTotal > investmentTotal,
         'color-loss': grandTotal <= investmentTotal
@@ -21,7 +23,8 @@
     >
       Grand Total: {{ (grandTotal ? grandTotal : 0) | currency: "EUR" }}
     </div>
-    <div class="totals"
+    <div
+      class="totals"
       [ngClass]="{
         'color-profit': grandTotal > investmentTotal,
         'color-loss': grandTotal <= investmentTotal
@@ -55,7 +58,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button
-    color="accent"
+      color="accent"
       mat-raised-button
       (click)="editAsset(asset.id)"
       data-toggle="tooltip"
@@ -67,13 +70,35 @@
   </mat-card-actions>
 </mat-card>
 
-<button
-color="primary"
-  mat-raised-button
-  (click)="addAsset()"
-  data-toggle="tooltip"
-  data-placement="top"
-  title="Add new asset"
->
-  Add Asset
-</button>
+<div class="spread-evenly">
+  <button
+    color="primary"
+    mat-raised-button
+    (click)="addAsset()"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Add new asset"
+  >
+    Add Asset
+  </button>
+  <button
+    color="accent"
+    mat-raised-button
+    (click)="loadData()"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Load Data"
+  >
+    Load Data
+  </button>
+  <button
+    color="accent"
+    mat-raised-button
+    (click)="saveData()"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Save Data"
+  >
+    Save Data
+  </button>
+</div>

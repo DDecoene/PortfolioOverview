@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { IAsset } from 'src/interfaces/asset';
 import { AssetPrice } from '../models/AssetPrice';
 import { ConfigService } from './config.service';
+import {IAssetValue} from 'src/interfaces/assetValue'
 
 @Injectable({
   providedIn: 'root',
@@ -23,4 +24,12 @@ export class AssetpriceService {
     }
     return this.retrievedAssets.get(asset.symbol);
   }
+
+  calculateValue(asset: IAsset, price:number) : IAssetValue {
+    return {
+      value: asset.quantityHeld * price,
+      originalPrice : asset.totalInvestment / asset.quantityHeld,
+    };
+  }
+
 }
