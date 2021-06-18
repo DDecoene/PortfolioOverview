@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { IAsset } from 'src/interfaces/asset';
+import { IAsset } from 'src/app/interfaces/asset';
 import { AssetPrice } from '../models/AssetPrice';
 import { ConfigService } from './config.service';
-import {IAssetValue} from 'src/interfaces/assetValue'
+import {IAssetValue} from 'src/app/interfaces/assetValue'
 
 @Injectable({
   providedIn: 'root',

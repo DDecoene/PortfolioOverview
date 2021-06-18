@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { IAsset } from 'src/interfaces/asset';
-import { AssetpriceService } from 'src/services/assetprice.service';
-import { AssetPrice } from "src/models/AssetPrice";
+import { IAsset } from 'src/app/interfaces/asset';
+import { AssetpriceService } from 'src/app/services/assetprice.service';
+import { AssetPrice } from "src/app/models/AssetPrice";
 
 @Component({
   selector: 'app-asset-price',

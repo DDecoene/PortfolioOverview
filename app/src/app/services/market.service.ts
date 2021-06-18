@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Market } from 'src/models/Market';
+import { Market } from 'src/app/models/Market';
 import { ConfigService } from './config.service';
 import { STORAGE_KEY_TYPE } from './service.helper';
 

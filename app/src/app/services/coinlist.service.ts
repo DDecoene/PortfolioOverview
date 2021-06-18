@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICoinListEntry } from 'src/interfaces/coinlist';
+import { ICoinListEntry } from 'src/app/interfaces/coinlist';
 import { ConfigService } from './config.service';
 import { STORAGE_KEY_TYPE } from './service.helper';
 

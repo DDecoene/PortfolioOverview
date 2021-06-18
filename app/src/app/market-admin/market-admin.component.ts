@@ -2,8 +2,8 @@ import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Market } from 'src/models/Market';
-import { MarketService } from 'src/services/market.service';
+import { Market } from 'src/app/models/Market';
+import { MarketService } from 'src/app/services/market.service';
 
 @Component({
   selector: 'app-market-admin',

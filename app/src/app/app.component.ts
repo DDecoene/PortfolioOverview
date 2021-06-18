@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CoinListService } from 'src/services/coinlist.service';
-import { ConfigService } from 'src/services/config.service';
+import { CoinListService } from 'src/app/services/coinlist.service';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-root',

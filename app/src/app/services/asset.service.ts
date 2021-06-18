@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAsset } from 'src/interfaces/asset';
+import { IAsset } from 'src/app/interfaces/asset';
 import { STORAGE_KEY_TYPE } from './service.helper';
 @Injectable({
   providedIn: 'root',

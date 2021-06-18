@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MarketService } from 'src/services/market.service';
+import { MarketService } from 'src/app/services/market.service';
 
 @Pipe({
   name: 'marketname'

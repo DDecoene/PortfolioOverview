@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { IAsset } from 'src/interfaces/asset';
-import { AssetPrice } from '../../models/AssetPrice';
-import { AssetpriceService } from 'src/services/assetprice.service';
-import { IAssetValue } from 'src/interfaces/assetValue';
+import { IAsset } from 'src/app/interfaces/asset';
+import { AssetPrice } from '../models/AssetPrice';
+import { AssetpriceService } from 'src/app/services/assetprice.service';
+import { IAssetValue } from 'src/app/interfaces/assetValue';
 
 @Component({
   selector: 'app-asset-totalizer',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AssetService } from 'src/services/asset.service';
+import { AssetService } from 'src/app/services/asset.service';
 import { FileSaverService } from 'ngx-filesaver'; // https://www.npmjs.com/package/ngx-filesaver
 import { HttpClient } from '@angular/common/http';
 

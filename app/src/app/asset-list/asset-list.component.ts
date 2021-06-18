@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AssetService } from 'src/services/asset.service';
-import { ExampleDataService } from 'src/services/example-data.service';
+import { AssetService } from 'src/app/services/asset.service';
+import { ExampleDataService } from 'src/app/services/example-data.service';
 
-import { IAsset } from '../../interfaces/asset';
+import { IAsset } from '../interfaces/asset';
 
 @Component({
   selector: 'app-asset-list',
