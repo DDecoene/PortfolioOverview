@@ -16,10 +16,9 @@ export class AssetpriceService {
 
   getPrice(asset: IAsset): Observable<AssetPrice> {
     if (!this.retrievedAssets.has(asset.symbol)) {
-      const config = this.configService.getConfig();
       this.retrievedAssets.set(
         asset.symbol,
-        this.httpClient.get<AssetPrice>(config.cryptoAPIUrl.replace('__placeholder__', asset.symbol))
+        this.httpClient.get<AssetPrice>(this.configService.getCryptoAPIUrl(asset.symbol))
       );
     }
     return this.retrievedAssets.get(asset.symbol);
