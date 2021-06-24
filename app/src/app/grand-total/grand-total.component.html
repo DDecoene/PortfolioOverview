@@ -1,0 +1,41 @@
+<mat-card class="mycard">
+  <mat-card-content>
+    <div class="totals">
+      Total Invested:
+      {{ (investmentTotal ? investmentTotal : 0) | currency: "EUR" }}
+    </div>
+    <div
+      class="totals"
+      [ngClass]="{
+        'color-profit': grandTotal > investmentTotal,
+        'color-loss': grandTotal <= investmentTotal
+      }"
+    >
+      Profit:
+      {{ (grandTotal ? grandTotal - investmentTotal : 0) | currency: "EUR" }}
+    </div>
+    <div
+      class="totals"
+      [ngClass]="{
+        'color-profit': grandTotal > investmentTotal,
+        'color-loss': grandTotal <= investmentTotal
+      }"
+    >
+      Grand Total: {{ (grandTotal ? grandTotal : 0) | currency: "EUR" }}
+    </div>
+    <div
+      class="totals"
+      [ngClass]="{
+        'color-profit': grandTotal > investmentTotal,
+        'color-loss': grandTotal <= investmentTotal
+      }"
+    >
+      ROI:
+      {{
+        ((grandTotal - investmentTotal) / investmentTotal) * 100
+          | number: "1.0-2"
+      }}
+      %
+    </div>
+  </mat-card-content>
+</mat-card>

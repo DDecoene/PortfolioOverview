@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICoinListEntry } from 'src/interfaces/coinlist';
+import { ICoinListEntry } from 'src/app/interfaces/coinlist';
 import { ConfigService } from './config.service';
 import { STORAGE_KEY_TYPE } from './service.helper';
 
@@ -27,7 +27,7 @@ export class CoinListService {
         return coinList;
       }
     }
-    
+
     return null;
   }
 
@@ -37,12 +37,11 @@ export class CoinListService {
   }
 
   private updateCoinList(): void {
-    const config = this.configService.getConfig();
     let coinList: ICoinListEntry[];
     localStorage.removeItem(STORAGE_KEY_TYPE.COINLIST);
 
     this.httpClient
-      .get<ICoinListEntry[]>(config.cryptoCoinListAPIUrl)
+      .get<ICoinListEntry[]>(this.configService.getCryptoCoinListAPIUrl())
       .subscribe((data: ICoinListEntry[]) => {
         coinList = [ ...data ];
         this.saveCoinList(coinList);

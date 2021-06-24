@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AssetService } from 'src/services/asset.service';
+import { AssetService } from 'src/app/services/asset.service';
+import { ExampleDataService } from 'src/app/services/example-data.service';
 
-import { IAsset } from '../../interfaces/asset';
+import { IAsset } from '../interfaces/asset';
 
 @Component({
   selector: 'app-asset-list',
@@ -13,9 +14,8 @@ export class AssetListComponent implements OnInit {
   portfolio: Array<IAsset>;
   grandTotal: number;
   investmentTotal: number;
-  assetPrice: number;
 
-  constructor(private assetService: AssetService, private router: Router) {
+  constructor(private assetService: AssetService, private router: Router, private exampleDataService:ExampleDataService) {
     this.portfolio = assetService.getAll();
   }
 
@@ -35,5 +35,13 @@ export class AssetListComponent implements OnInit {
 
   addAsset(): void {
     this.router.navigate(['/admin']);
+  }
+
+  loadData(){
+    this.exampleDataService.loadExampleDataFileIntoStorage();
+  }
+
+  saveData(){
+    this.exampleDataService.saveStorageDataToClient();
   }
 }

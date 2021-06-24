@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Market } from 'src/models/Market';
-import { MarketService } from 'src/services/market.service';
+import { Market } from 'src/app/models/Market';
+import { MarketService } from 'src/app/services/market.service';
 
 @Component({
   selector: 'app-market-list',

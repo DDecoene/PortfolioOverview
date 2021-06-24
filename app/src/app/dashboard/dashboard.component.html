@@ -1,0 +1,29 @@
+<app-grand-total
+  [investmentTotal]="investmentTotal"
+  [grandTotal]="grandTotal"
+></app-grand-total>
+
+<mat-card *ngFor="let asset of totaledAssets" class="mycard">
+  <mat-card-title>{{ asset.name }}</mat-card-title>
+  <mat-card-content>
+    <ul>
+      <app-asset-price
+        [asset]="asset"
+        (priceDataUpdated)="updateGrandTotal($event, asset)"
+      >
+      </app-asset-price>
+    </ul>
+  </mat-card-content>
+</mat-card>
+<div class="spread-evenly">
+  <button
+    color="primary"
+    mat-raised-button
+    (click)="details()"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="View detailed list"
+  >
+    Details
+  </button>
+</div>

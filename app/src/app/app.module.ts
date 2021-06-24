@@ -19,6 +19,8 @@ import { MarketnamePipe } from './marketname.pipe';
 import { MarketurlPipe } from './marketurl.pipe';
 import { MarketListComponent } from './market-list/market-list.component';
 import { NaviComponent } from './navi/navi.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { GrandTotalComponent } from './grand-total/grand-total.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { NaviComponent } from './navi/navi.component';
     MarketurlPipe,
     MarketListComponent,
     NaviComponent,
+    DashboardComponent,
+    GrandTotalComponent,
   ],
   imports: [
     BrowserModule,

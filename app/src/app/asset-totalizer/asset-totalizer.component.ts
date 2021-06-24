@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { IAsset } from 'src/interfaces/asset';
-import { AssetPrice } from "../../models/AssetPrice";
+import { IAsset } from 'src/app/interfaces/asset';
+import { AssetPrice } from '../models/AssetPrice';
+import { AssetpriceService } from 'src/app/services/assetprice.service';
+import { IAssetValue } from 'src/app/interfaces/assetValue';
 
 @Component({
   selector: 'app-asset-totalizer',
@@ -15,13 +17,17 @@ export class AssetTotalizerComponent implements OnInit {
   value = 0;
   originalPrice = 0;
 
-  constructor() {}
+  constructor(private assetPriceService: AssetpriceService) {}
 
   ngOnInit(): void {
     if (this.priceData) {
-      this.value =
-        this.asset.quantityHeld * this.priceData[this.asset.symbol]['eur']; // TODO remove string literal
-      this.originalPrice = this.asset.totalInvestment / this.asset.quantityHeld;
+      const assetValue: IAssetValue = this.assetPriceService.calculateValue(
+        this.asset,
+        this.priceData[this.asset.symbol]['eur']
+      );
+
+      this.value = assetValue.value
+      this.originalPrice = assetValue.originalPrice;
       this.assetValueEvent.emit(this.value);
     }
   }

@@ -5,8 +5,10 @@ import { AssetListComponent } from './asset-list/asset-list.component';
 import { AssetAdminComponent } from './asset-admin/asset-admin.component';
 import { PortfolioUploadComponent } from './portfolio-upload/portfolio-upload.component';
 import { MarketAdminComponent } from './market-admin/market-admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'list', component: AssetListComponent },
 
   { path: 'admin', component: AssetAdminComponent },
@@ -16,7 +18,7 @@ const routes: Routes = [
   { path: 'marketadmin/:marketId', component: MarketAdminComponent },
 
   { path: 'upload', component: PortfolioUploadComponent },
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({

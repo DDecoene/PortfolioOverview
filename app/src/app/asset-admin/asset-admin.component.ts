@@ -5,12 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { IAsset } from 'src/interfaces/asset';
-import { ICoinListEntry } from 'src/interfaces/coinlist';
-import { Market } from 'src/models/Market';
-import { AssetService } from 'src/services/asset.service';
-import { CoinListService } from 'src/services/coinlist.service';
-import { MarketService } from 'src/services/market.service';
+import { IAsset } from 'src/app/interfaces/asset';
+import { ICoinListEntry } from 'src/app/interfaces/coinlist';
+import { Market } from 'src/app/models/Market';
+import { AssetService } from 'src/app/services/asset.service';
+import { CoinListService } from 'src/app/services/coinlist.service';
+import { MarketService } from 'src/app/services/market.service';
 
 @Component({
   selector: 'app-asset-admin',
