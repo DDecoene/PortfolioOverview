@@ -14,7 +14,6 @@ export class AssetListComponent implements OnInit {
   portfolio: Array<IAsset>;
   grandTotal: number;
   investmentTotal: number;
-  assetPrice: number;
 
   constructor(private assetService: AssetService, private router: Router, private exampleDataService:ExampleDataService) {
     this.portfolio = assetService.getAll();

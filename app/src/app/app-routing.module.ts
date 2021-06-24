@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'marketadmin/:marketId', component: MarketAdminComponent },
 
   { path: 'upload', component: PortfolioUploadComponent },
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
