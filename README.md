@@ -1,6 +1,8 @@
 # PortfolioOverview
 View all your assets' current values.
 
+[![Build](https://github.com/DDecoene/PortfolioOverview/actions/workflows/publish.yaml/badge.svg)](https://github.com/DDecoene/PortfolioOverview/actions/workflows/publish.yaml)
+
 ## Idea
 I want to view the current values of all my assets in one convenient dashboard. My assets are on different platforms like Binance, Bitvavo, eToro,...
 
