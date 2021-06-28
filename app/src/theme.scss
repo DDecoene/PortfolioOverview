@@ -15,3 +15,11 @@ $my-theme: mat-light-theme($primary-palette, $accent-palette);
     background-color: mat-color($accent-palette, 50);
   }
 }
+
+.footer {
+  background-color: mat-color($accent-palette, 50);
+  margin: 20px auto;
+  vertical-align: middle;
+  font-size: xx-small;
+  padding: 5px;
+}
