@@ -35,8 +35,22 @@
 
     <div class="mycontainer">
       <router-outlet></router-outlet>
-      <div class="version">
-        Version: {{ version }}
+
+      <div class="footer spread-evenly">
+
+        <div style="vertical-align: middle">Version: {{ version }}</div>
+        <div>
+          <a href="https://dennis-decoene.mit-license.org/">MIT License</a>
+        </div>
+        <div style="vertical-align: middle">
+          <a href="https://github.com/DDecoene/PortfolioOverview"
+            ><img height="20px" src="assets/GitHub_Logo.png"
+          /></a>
+        </div>
+        <div>
+          Copyright © 2021
+          <a href="https://github.com/DDecoene">Dennis Decoene</a>
+        </div>
       </div>
     </div>
   </mat-sidenav-content>
