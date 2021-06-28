@@ -11,7 +11,6 @@ export class AppComponent {
   title = 'Portfolio Overview';
 
   constructor(
-    private configService: ConfigService, // This makes sure there is a default config as soon as the app loads
     private coinListService: CoinListService // This makes sure the coin list is updated and stored as soon as the app loads
   ) {}
 }

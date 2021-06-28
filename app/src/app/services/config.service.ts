@@ -1,55 +1,46 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, ReplaySubject, throwError } from 'rxjs';
+
 import { Injectable } from '@angular/core';
 import { MyConfig } from '../models/MyConfig';
 import { STORAGE_KEY_TYPE } from './service.helper';
+import { catchError, filter, map, mapTo, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
-  private config: MyConfig;
+  private configuration: MyConfig;
 
-  constructor() {
-    this.loadConfig();
-
-    if (!this.config) {
-      this.init();
-    }
+  constructor(private httpClient: HttpClient) {
   }
 
-  private loadConfig(): void {
-    const strJson = localStorage.getItem(STORAGE_KEY_TYPE.CONFIG);
-    if (strJson) {
-      this.config = JSON.parse(strJson);
-    }
+  load(): Observable<void> {
+    return this.httpClient.get('/assets/config.json')
+      .pipe(
+        tap((configuration: any) => this.configuration = configuration),
+        mapTo(undefined),
+      );
   }
 
-  private init(): void {
-    // store default config
-    // TODO: This has to move to a config file!!!!
-    this.config = new MyConfig();
-    this.config.cryptoAPIUrl =
-      'https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=eur';
-    this.config.cryptoCoinListAPIUrl =
-      'https://api.coingecko.com/api/v3/coins/list';
-    this.config.cryptoMarketChartUrl =
-      'https://api.coingecko.com/api/v3/coins/${symbol}/market_chart/range';
-    this.storeConfig();
-  }
-
-  private storeConfig(): void {
-    localStorage.removeItem(STORAGE_KEY_TYPE.CONFIG);
-    localStorage.setItem(STORAGE_KEY_TYPE.CONFIG, JSON.stringify(this.config));
-  }
+  // getValue(key: string, defaultValue?: any): any {
+  //   return this.configuration[key as keyof MyConfig] || defaultValue;
+  // }
 
   public getCryptoAPIUrl(symbol: string): string {
-    return eval('`' + this.config.cryptoAPIUrl + '`');
+    return eval('`' + this.configuration.cryptoAPIUrl + '`');
   }
 
   public getCryptoCoinListAPIUrl(): string {
-    return this.config.cryptoCoinListAPIUrl;
+    return this.configuration.cryptoCoinListAPIUrl;
   }
 
   public getCryptoMarketChartUrl(symbol: string): string {
-    return eval('`' + this.config.cryptoMarketChartUrl + '`');
+    return eval('`' + this.configuration.cryptoMarketChartUrl + '`');
+  }
+
+  public getVersion(): string {
+    return this.configuration.version;
   }
 }
+
