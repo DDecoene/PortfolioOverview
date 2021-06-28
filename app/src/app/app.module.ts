@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,12 @@ import { MarketListComponent } from './market-list/market-list.component';
 import { NaviComponent } from './navi/navi.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GrandTotalComponent } from './grand-total/grand-total.component';
+import { ConfigService } from './services/config.service';
+
+
+export function initApp(configurationService: ConfigService) {
+  return () => configurationService.load().toPromise();
+}
 
 @NgModule({
   declarations: [
@@ -47,7 +53,14 @@ import { GrandTotalComponent } from './grand-total/grand-total.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      multi: true,
+      deps: [ConfigService]
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
