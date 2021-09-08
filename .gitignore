@@ -9,3 +9,5 @@ app/src/data/portfolio.json
 
 # Local History for Visual Studio Code
 .history/
+app/src/environments/environment.ts
+app/.firebase/*

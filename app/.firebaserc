@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "portfolio-overview-v2": {
+      "hosting": {
+        "app": [
+          "portfolio-overview-v2"
+        ]
+      }
+    }
+  }
+}

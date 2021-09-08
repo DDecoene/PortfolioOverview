@@ -1,3 +1,8 @@
+/*
+
+Manages markets in the data store (crud)
+
+*/
 import { Injectable } from '@angular/core';
 import { Market } from 'src/app/models/Market';
 import { ConfigService } from './config.service';

@@ -1,3 +1,8 @@
+/*
+
+Manages assets in the data store (crud)
+
+*/
 import { Injectable } from '@angular/core';
 import { IAsset } from 'src/app/interfaces/asset';
 import { STORAGE_KEY_TYPE } from './service.helper';

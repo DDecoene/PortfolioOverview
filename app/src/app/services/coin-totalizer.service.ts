@@ -1,3 +1,8 @@
+/*
+
+Calulates value totals
+
+*/
 import { Injectable } from '@angular/core';
 import { IAsset } from '../interfaces/asset';
 import { AssetService } from './asset.service';

@@ -1,3 +1,9 @@
+/*
+
+Fetches list of coins,
+Manages coin symbols in the data store (crud)
+
+*/
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICoinListEntry } from 'src/app/interfaces/coinlist';

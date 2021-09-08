@@ -1,3 +1,8 @@
+/*
+
+Fetches asset prices from the API's
+
+*/
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
