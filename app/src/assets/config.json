@@ -1,5 +1,5 @@
 {
-  "version": "0.1.1",
+  "version": "2.0.0-dev",
   "cryptoAPIUrl": "https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=eur",
   "cryptoCoinListAPIUrl": "https://api.coingecko.com/api/v3/coins/list",
   "cryptoMarketChartUrl": "https://api.coingecko.com/api/v3/coins/{id}/market_chart/range"
